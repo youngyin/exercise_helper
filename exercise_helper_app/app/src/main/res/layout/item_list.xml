@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/item_linearLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -14,15 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/big_title_font_size"
-        android:text="운동일기1"
-        android:layout_margin="@dimen/layout_default_space"/>
+        android:text="운동일기1"/>
 
     <TextView
         android:id="@+id/time_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/default_font_size"
-        android:text="2021.03.16 13:00"
-        android:layout_margin="@dimen/layout_default_space"/>
+        android:text="2021.03.16 13:00"/>
 
 </LinearLayout>

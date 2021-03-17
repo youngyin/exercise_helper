@@ -2,18 +2,32 @@ package com.example.exercise_helper;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/*
+참고자료
+https://mine-it-record.tistory.com/254 리사이클러뷰 클릭이벤트 처리
+https://webnautes.tistory.com/1214 리사이클러뷰 처리
+ */
+
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
 
     private ArrayList<Dictionary> mList;
+    private OnItemClickListener mListener = null ;
+
+    public interface OnItemClickListener{
+        void onItemClick(View v, int position);
+    }
+
+    public void setOnClickListener(OnItemClickListener listener){
+        this.mListener = listener;
+    }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
         private TextView title;
@@ -21,11 +35,25 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         private TextView delay;
         private TextView content;
         private TextView time;
+        private LinearLayout linearLayout;
 
         public CustomViewHolder(View view) {
             super(view);
             this.title = (TextView) view.findViewById(R.id.title_textview);
             this.time = (TextView) view.findViewById(R.id.time_textview);
+            this.linearLayout = view.findViewById(R.id.item_linearLayout);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION){
+                        if (mList != null){
+                            mListener.onItemClick(v, position);
+                        }
+                    }
+                }
+            });
         }
     }
 
