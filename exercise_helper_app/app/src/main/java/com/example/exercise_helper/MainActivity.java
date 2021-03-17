@@ -1,25 +1,22 @@
 package com.example.exercise_helper;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
+import android.widget.Toolbar;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import java.util.ArrayList;
 
@@ -33,6 +30,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initView();
+        initRecyclerView();
+        selectAllDB();
+    }
+
+    private void initView(){
         ImageButton exerciseBtn = findViewById(R.id.exercise_btn);
         ImageButton diaryBtn = findViewById(R.id.diary_btn);
         ImageButton bluetoothBtn = findViewById(R.id.bluetooth_btn);
@@ -43,6 +46,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bluetoothBtn.setOnClickListener(this);
         dashboardBtn.setOnClickListener(this);
 
+        // tool bar
+        ImageView ivMenu=findViewById(R.id.iv_menu);
+        ivMenu.setImageResource(R.drawable.refresh);
+        ivMenu.setOnClickListener(this);
+    }
+
+    private void initRecyclerView(){
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_main_list);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
@@ -54,21 +64,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(), mLinearLayoutManager.getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
+    }
 
-        // 초기설정
+    private void selectAllDB() {
         DBHelper dbHelper = new DBHelper(this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select _id, title, category, delay, content, _time from "+ DBHelper.DATABASE_NAME+" order by _time", null);
+        Cursor cursor = db.rawQuery("select _id, title, category, delay, content, _time from "+ DBHelper.DATABASE_NAME+" order by _id DESC", null);
 
         while (cursor.moveToNext()){
-            Dictionary data = new Dictionary(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
+            Dictionary data = new Dictionary(cursor.getString(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    cursor.getString(5));
             mArrayList.add(data); // RecyclerView의 마지막 줄에 삽입
             mAdapter.notifyDataSetChanged();
         }
-
-        ImageView ivMenu=findViewById(R.id.iv_menu);
-        ivMenu.setImageResource(R.drawable.ic_launcher_foreground);
-        ivMenu.setOnClickListener(this);
     }
 
     @Override
@@ -95,31 +107,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.iv_menu :
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("delete diary");
-                builder.setMessage("모든 기록을 삭제하시겠습니까?");
-                builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        SQLiteOpenHelper myDBHelper = new DBHelper(getApplicationContext());
-                        SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
-                        myDBHelper.onUpgrade(sqlDB, 0, 0); // 전체 삭제
-
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        finish();
-                        startActivity(intent);
-                    }
-                });
-                builder.setNegativeButton("no",null);
-                builder.create().show();
+                showDialog();
                 break;
         }
+    }
+
+    private void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("delete diary");
+        builder.setMessage("모든 기록을 삭제하시겠습니까?");
+        builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                initializationDB(); // DB 초기화
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                finish();
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("no",null);
+        builder.create().show();
+    }
+    
+    private void initializationDB(){
+        SQLiteOpenHelper myDBHelper = new DBHelper(getApplicationContext());
+        SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
+        myDBHelper.onUpgrade(sqlDB, 0, 0);
     }
 
     public static Dictionary item = null;
     @Override
     public void onItemClick(View v, int position) {
-        Toast.makeText(this, item.getId()+" 를 클릭!!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, item.getId()+" 를 클릭!!", Toast.LENGTH_LONG).show();
         Intent intent;
         intent = new Intent(this, DiaryActivity.class);
         finish();

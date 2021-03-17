@@ -13,9 +13,10 @@
     <TextView
         android:id="@+id/id_textview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:textSize="@dimen/big_title_font_size"
-        android:text="id"/>
+        android:text="id"
+        tools:ignore="Suspicious0dp" />
 
     <TextView
         android:id="@+id/title_textview"

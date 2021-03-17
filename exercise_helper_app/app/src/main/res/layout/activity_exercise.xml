@@ -63,7 +63,6 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Not connected..."
-                android:textColor="@color/gray_700"
                 android:textSize="@dimen/default_font_size"/>
 
         </LinearLayout>

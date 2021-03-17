@@ -1,21 +1,14 @@
 package com.example.exercise_helper;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class DiaryActivity extends AppCompatActivity implements View.OnClickListener {
     EditText titleEditTV;
@@ -31,7 +24,10 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary);
+        initView();
+    }
 
+    private void initView(){
         Button cancelBtn = findViewById(R.id.cancle_btn);
         Button saveBtn = findViewById(R.id.save_btn);
         idEditTV = findViewById(R.id.id_editTV);
@@ -44,6 +40,7 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
         cancelBtn.setOnClickListener(this);
         saveBtn.setOnClickListener(this);
 
+        // tool bar
         ImageView ivMenu=findViewById(R.id.iv_menu);
         ivMenu.setOnClickListener(this);
 
@@ -68,8 +65,6 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         Intent intent;
-        SQLiteOpenHelper myDBHelper = new DBHelper(this);
-        SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
 
         switch (v.getId()){
             case R.id.save_btn :
@@ -77,23 +72,12 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
                 String category = categoryEditTV.getText().toString();
                 String delay = delayEditTV.getText().toString();
                 String content = contentEditTv.getText().toString();
-                SimpleDateFormat format1 = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
-                String time = format1.format(new Date());
 
                 if (item!=null){
-                    sqlDB.execSQL("update "+DBHelper.DATABASE_NAME
-                            +" set title='"+title+"',"
-                            +" category='"+category+"',"
-                            +" delay='"+delay+"',"
-                            +" content='"+content+"'"
-                            +" where _ID="+item.getId());
-                    sqlDB.close();
-                    Toast.makeText(getApplicationContext(),"수정되었습니다.",Toast.LENGTH_SHORT).show();
+                    DBHelper.update(getApplicationContext(), item.getId(), title, category, delay, content);
                 }
                 else{
-                    sqlDB.execSQL("INSERT INTO "+DBHelper.DATABASE_NAME+" (title, category, delay, content, _time) VALUES ( '" + title + "', '"+ category +"', '"+ delay+"', '"+ content+"', '"+ time+"');");
-                    sqlDB.close();
-                    Toast.makeText(getApplicationContext(),"저장되었습니다.",Toast.LENGTH_SHORT).show();
+                    DBHelper.insert(getApplicationContext(), title, category, delay, content);
                 }
 
                 intent = new Intent(this, MainActivity.class);
@@ -103,8 +87,7 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.cancle_btn :
                 if (item!=null){
-                    sqlDB.execSQL("delete from "+DBHelper.DATABASE_NAME+" where _ID="+item.getId());
-                    Toast.makeText(getApplicationContext(),"삭제되었습니다.",Toast.LENGTH_SHORT).show();
+                    DBHelper.delete(getApplicationContext(), item.getId());
                 }
                 else{
                 }

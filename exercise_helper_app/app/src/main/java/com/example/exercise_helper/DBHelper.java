@@ -3,6 +3,10 @@ package com.example.exercise_helper;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
@@ -36,5 +40,37 @@ public class DBHelper extends SQLiteOpenHelper {
         String mySQL = "drop table "+DATABASE_NAME;
         db.execSQL(mySQL);
         onCreate(db);
+    }
+
+    public static void delete(Context context, String _id){
+        SQLiteOpenHelper myDBHelper = new DBHelper(context);
+        SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
+        sqlDB.execSQL("delete from "+DBHelper.DATABASE_NAME+" where _ID="+_id);
+        Toast.makeText(context,"삭제되었습니다.",Toast.LENGTH_SHORT).show();
+
+    }
+
+    public static void insert(Context context, String title, String category, String delay, String content){
+        SimpleDateFormat format1 = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
+        String _time = format1.format(new Date());
+
+        SQLiteOpenHelper myDBHelper = new DBHelper(context);
+        SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
+        sqlDB.execSQL("INSERT INTO "+DBHelper.DATABASE_NAME+" (title, category, delay, content, _time) VALUES ( '" + title + "', '"+ category +"', '"+ delay+"', '"+ content+"', '"+ _time+"');");
+        sqlDB.close();
+        Toast.makeText(context,"저장되었습니다.",Toast.LENGTH_SHORT).show();
+    }
+
+    public static void update(Context context, String _id, String title, String category, String delay, String content){
+        SQLiteOpenHelper myDBHelper = new DBHelper(context);
+        SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
+        sqlDB.execSQL("update "+DBHelper.DATABASE_NAME
+                +" set title='"+title+"',"
+                +" category='"+category+"',"
+                +" delay='"+delay+"',"
+                +" content='"+content+"'"
+                +" where _ID="+_id);
+        sqlDB.close();
+        Toast.makeText(context,"수정되었습니다.",Toast.LENGTH_SHORT).show();
     }
 }
