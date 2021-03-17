@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 public class DiaryActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -19,6 +21,9 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
 
         cancelBtn.setOnClickListener(this);
         saveBtn.setOnClickListener(this);
+
+        ImageView ivMenu=findViewById(R.id.iv_menu);
+        ivMenu.setOnClickListener(this);
     }
 
     @Override
@@ -30,10 +35,16 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.cancle_btn :
-                intent = new Intent(this, MainActivity.class);
                 finish();
-                startActivity(intent);
+                break;
+
+            case R.id.iv_menu :
+                finish();
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() { // 뒤로가기 버튼 비활성화
     }
 }

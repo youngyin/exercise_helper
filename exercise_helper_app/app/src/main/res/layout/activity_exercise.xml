@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include  layout="@layout/toolbar"/>
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/khu_notifications_card"
         android:layout_width="match_parent"
