@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.diary_btn :
+                intent = new Intent(this, DiaryActivity.class);
+                startActivity(intent);
                 break;
         }
     }
