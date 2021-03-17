@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context=".MainActivity">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/khu_notifications_card"
@@ -15,55 +16,98 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/layout_default_space"
-            android:orientation="vertical">
+            android:layout_margin="@dimen/layout_default_space">
+
+
+            <ImageButton
+                android:id="@+id/dashboard_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toTopOf="@+id/tv2"
+                app:layout_constraintEnd_toEndOf="@+id/tv2"
+                app:layout_constraintStart_toStartOf="@+id/tv2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/dashboard" />
+
+            <ImageButton
+                android:id="@+id/bluetooth_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toTopOf="@+id/tv1"
+                app:layout_constraintEnd_toEndOf="@+id/tv1"
+                app:layout_constraintStart_toStartOf="@+id/tv1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/bluetooth" />
+
+            <ImageButton
+                android:id="@+id/diary_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toTopOf="@+id/tv3"
+                app:layout_constraintEnd_toEndOf="@+id/tv3"
+                app:layout_constraintStart_toStartOf="@+id/tv3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/diary" />
+
+            <ImageButton
+                android:id="@+id/exercise_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toTopOf="@+id/tv4"
+                app:layout_constraintEnd_toEndOf="@+id/tv4"
+                app:layout_constraintStart_toStartOf="@+id/tv4"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/exercises" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/layout_default_space"
-                android:text="MyStrength"
-                android:textSize="@dimen/big_title_font_size"
-                android:textStyle="bold" />
-
-            <com.dinuscxj.progressbar.CircleProgressBar
-                android:layout_margin="@dimen/layout_default_space"
-                android:layout_gravity="center"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                app:progress_text_size="50sp"
-                app:style="solid_line"
-                app:progress_stroke_width="20dp "
-                app:progress_stroke_cap="round"
-                app:progress_start_color="#FFBB00"
-                app:progress_end_color="#ABF200"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:id="@+id/progress" />
-
-            <Button
-                style="@style/Widget.MaterialComponents.Button"
-                android:id="@+id/btnConnect"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="2"
-                android:text="connect"
-                android:textSize="@dimen/default_font_size"/>
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="Bluetooth"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/textViewReceive"
-                android:layout_width="match_parent"
+                android:id="@+id/tv2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/layout_default_space"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Not connected..."
-                android:textColor="@color/gray_700"
-                android:textSize="@dimen/default_font_size"/>
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="Dashboard"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv1" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="Create Diary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv2" />
+
+            <TextView
+                android:id="@+id/tv4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exercise"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv3" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
