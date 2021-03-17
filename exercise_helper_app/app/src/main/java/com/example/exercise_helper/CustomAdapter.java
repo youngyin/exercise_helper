@@ -30,6 +30,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
+        private TextView id;
         private TextView title;
         private TextView category;
         private TextView delay;
@@ -39,11 +40,36 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
         public CustomViewHolder(View view) {
             super(view);
+            this.id = (TextView) view.findViewById(R.id.id_textview);
             this.title = (TextView) view.findViewById(R.id.title_textview);
+            this.category = (TextView) view.findViewById(R.id.category_textview);
+            this.delay = (TextView) view.findViewById(R.id.delay_textview);
+            this.content = (TextView) view.findViewById(R.id.content_textview);
             this.time = (TextView) view.findViewById(R.id.time_textview);
             this.linearLayout = view.findViewById(R.id.item_linearLayout);
 
-            view.setOnClickListener(new View.OnClickListener() {
+            linearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION){
+                        if (mList != null){
+                            Dictionary item = new Dictionary(
+                                    id.getText().toString(),
+                                    title.getText().toString(),
+                                    category.getText().toString(),
+                                    delay.getText().toString(),
+                                    content.getText().toString(),
+                                    time.getText().toString()
+                            );
+                            MainActivity.item = item;
+                            mListener.onItemClick(v, position);
+                        }
+                    }
+                }
+            });
+
+            /*view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
@@ -53,7 +79,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                         }
                     }
                 }
-            });
+            });*/
         }
     }
 
@@ -77,8 +103,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         //viewholder.title.setGravity(Gravity.CENTER);
         //viewholder.time.setGravity(Gravity.CENTER);
 
-        viewholder.title.setText(mList.get(position).getTitle());
+        viewholder.id.setText(mList.get(position).getId());
         viewholder.time.setText(mList.get(position).getTime());
+        viewholder.title.setText(mList.get(position).getTitle());
+        viewholder.category.setText(mList.get(position).getCategory());
+        viewholder.content.setText(mList.get(position).getContent());
+        viewholder.delay.setText(mList.get(position).getDelay());
     }
 
     @Override

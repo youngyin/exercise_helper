@@ -1,8 +1,13 @@
 package com.example.exercise_helper;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -12,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -49,18 +55,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(), mLinearLayoutManager.getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
-        // 테스트용
-        Button buttonInsert = (Button)findViewById(R.id.button_main_insert);
-        buttonInsert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dictionary data = new Dictionary("Apple", "사과");
-                mArrayList.add(data); // RecyclerView의 마지막 줄에 삽입
-                mAdapter.notifyDataSetChanged();
-            }
-        });
+        // 초기설정
+        DBHelper dbHelper = new DBHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select _id, title, category, delay, content, _time from "+ DBHelper.DATABASE_NAME+" order by _time", null);
+
+        while (cursor.moveToNext()){
+            Dictionary data = new Dictionary(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
+            mArrayList.add(data); // RecyclerView의 마지막 줄에 삽입
+            mAdapter.notifyDataSetChanged();
+        }
 
         ImageView ivMenu=findViewById(R.id.iv_menu);
+        ivMenu.setImageResource(R.drawable.ic_launcher_foreground);
         ivMenu.setOnClickListener(this);
     }
 
@@ -77,23 +84,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.exercise_btn :
                 intent = new Intent(this, ExerciseActivity.class);
+                finish();
                 startActivity(intent);
                 break;
 
             case R.id.diary_btn :
                 intent = new Intent(this, DiaryActivity.class);
+                finish();
                 startActivity(intent);
                 break;
 
             case R.id.iv_menu :
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("delete diary");
+                builder.setMessage("모든 기록을 삭제하시겠습니까?");
+                builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SQLiteOpenHelper myDBHelper = new DBHelper(getApplicationContext());
+                        SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
+                        myDBHelper.onUpgrade(sqlDB, 0, 0); // 전체 삭제
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        finish();
+                        startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton("no",null);
+                builder.create().show();
                 break;
         }
     }
 
+    public static Dictionary item = null;
     @Override
     public void onItemClick(View v, int position) {
+        Toast.makeText(this, item.getId()+" 를 클릭!!", Toast.LENGTH_LONG).show();
         Intent intent;
         intent = new Intent(this, DiaryActivity.class);
+        finish();
         startActivity(intent);
     }
 

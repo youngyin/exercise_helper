@@ -12,6 +12,26 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="아이디"
+        android:textSize="@dimen/big_title_font_size"
+        android:layout_marginRight="@dimen/layout_default_space"
+        android:layout_marginLeft="@dimen/layout_default_space"
+        android:layout_marginTop="@dimen/layout_default_space"/>
+
+    <EditText
+        android:id="@+id/id_editTV"
+        android:padding="@dimen/layout_default_space"
+        android:textColor="@color/black"
+        android:background="@drawable/memo_border"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/layout_default_space"
+        android:layout_marginLeft="@dimen/layout_default_space"
+        android:layout_marginTop="@dimen/layout_default_space"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="제목"
         android:textSize="@dimen/big_title_font_size"
         android:layout_marginRight="@dimen/layout_default_space"
@@ -19,6 +39,7 @@
         android:layout_marginTop="@dimen/layout_default_space"/>
 
     <EditText
+        android:id="@+id/title_editTV"
         android:padding="@dimen/layout_default_space"
         android:textColor="@color/black"
         android:background="@drawable/memo_border"
@@ -38,6 +59,7 @@
         android:layout_marginTop="@dimen/layout_default_space"/>
 
     <EditText
+        android:id="@+id/category_editTV"
         android:padding="@dimen/layout_default_space"
         android:textColor="@color/black"
         android:background="@drawable/memo_border"
@@ -57,6 +79,7 @@
         android:layout_marginTop="@dimen/layout_default_space"/>
 
     <EditText
+        android:id="@+id/delay_editTV"
         android:padding="@dimen/layout_default_space"
         android:textColor="@color/black"
         android:background="@drawable/memo_border"
@@ -76,11 +99,22 @@
         android:layout_marginTop="@dimen/layout_default_space"/>
 
     <EditText
+        android:id="@+id/content_editTV"
         android:padding="@dimen/layout_default_space"
         android:textColor="@color/black"
         android:background="@drawable/memo_border"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
+        android:layout_marginRight="@dimen/layout_default_space"
+        android:layout_marginLeft="@dimen/layout_default_space"
+        android:layout_marginTop="@dimen/layout_default_space"/>
+
+    <TextView
+        android:id="@+id/time_textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="작성시간"
+        android:textSize="@dimen/big_title_font_size"
         android:layout_marginRight="@dimen/layout_default_space"
         android:layout_marginLeft="@dimen/layout_default_space"
         android:layout_marginTop="@dimen/layout_default_space"/>
