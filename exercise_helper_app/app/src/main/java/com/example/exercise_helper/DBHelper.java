@@ -1,6 +1,7 @@
 package com.example.exercise_helper;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
@@ -72,5 +73,16 @@ public class DBHelper extends SQLiteOpenHelper {
                 +" where _ID="+_id);
         sqlDB.close();
         Toast.makeText(context,"수정되었습니다.",Toast.LENGTH_SHORT).show();
+    }
+
+    public static Cursor selectAll(Context context){
+        DBHelper dbHelper = new DBHelper(context);
+        SQLiteDatabase sqlDB = dbHelper.getWritableDatabase();
+        Cursor cursor = sqlDB.rawQuery("select _id, title, category, delay, content, _time from "+ DBHelper.DATABASE_NAME+" order by _id DESC", null);
+        return cursor;
+    }
+
+    public static void select(Context context){
+
     }
 }

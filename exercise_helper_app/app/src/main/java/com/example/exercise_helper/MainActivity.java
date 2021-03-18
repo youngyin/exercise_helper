@@ -64,9 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void selectAllDB() {
-        DBHelper dbHelper = new DBHelper(this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select _id, title, category, delay, content, _time from "+ DBHelper.DATABASE_NAME+" order by _id DESC", null);
+        Cursor cursor = DBHelper.selectAll(getApplicationContext());
 
         while (cursor.moveToNext()){
             Dictionary data = new Dictionary(cursor.getString(0),
@@ -90,6 +88,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.dashboard_btn :
+                intent = new Intent(this, DashboardActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.exercise_btn :
