@@ -1,5 +1,6 @@
 package com.example.exercise_helper;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -8,9 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,12 +22,15 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, CustomAdapter.OnItemClickListener {
     private ArrayList<Dictionary> mArrayList;
     private CustomAdapter mAdapter;
-    private Toolbar toolbar;
+    private RecyclerView mRecyclerView;
+    private LinearLayoutManager mLinearLayoutManager;
+    public static Context CONTEXT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        CONTEXT = this;
 
         initView();
         initRecyclerView();
@@ -38,23 +40,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initView(){
         ImageButton exerciseBtn = findViewById(R.id.exercise_btn);
         ImageButton diaryBtn = findViewById(R.id.diary_btn);
-        ImageButton bluetoothBtn = findViewById(R.id.bluetooth_btn);
+        ImageButton initializationBtn = findViewById(R.id.initialization_btn);
         ImageButton dashboardBtn = findViewById(R.id.dashboard_btn);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_main_list);
 
         exerciseBtn.setOnClickListener(this);
         diaryBtn.setOnClickListener(this);
-        bluetoothBtn.setOnClickListener(this);
+        initializationBtn.setOnClickListener(this);
         dashboardBtn.setOnClickListener(this);
-
-        // tool bar
-        ImageView ivMenu=findViewById(R.id.iv_menu);
-        ivMenu.setImageResource(R.drawable.refresh);
-        ivMenu.setOnClickListener(this);
     }
 
     private void initRecyclerView(){
-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_main_list);
-        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
+        mLinearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
         mArrayList = new ArrayList<>();
@@ -88,7 +85,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent;
 
         switch (v.getId()){
-            case R.id.bluetooth_btn :
+            case R.id.initialization_btn :
+                showInitializationDialog();
                 break;
 
             case R.id.dashboard_btn :
@@ -96,23 +94,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.exercise_btn :
                 intent = new Intent(this, ExerciseActivity.class);
-                finish();
                 startActivity(intent);
                 break;
 
             case R.id.diary_btn :
                 intent = new Intent(this, DiaryActivity.class);
-                finish();
                 startActivity(intent);
-                break;
-
-            case R.id.iv_menu :
-                showDialog();
                 break;
         }
     }
 
-    private void showDialog(){
+    private void showInitializationDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("delete diary");
         builder.setMessage("모든 기록을 삭제하시겠습니까?");
@@ -120,9 +112,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 initializationDB(); // DB 초기화
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                finish();
-                startActivity(intent);
+                initRecyclerView(); // 리사이클러뷰 초기화
+                selectAllDB(); // 리사이클러뷰 다시 로딩
             }
         });
         builder.setNegativeButton("no",null);
@@ -135,19 +126,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         myDBHelper.onUpgrade(sqlDB, 0, 0);
     }
 
+    // 리사이클러뷰 클릭 이벤트
     public static Dictionary item = null;
     @Override
     public void onItemClick(View v, int position) {
         //Toast.makeText(this, item.getId()+" 를 클릭!!", Toast.LENGTH_LONG).show();
         Intent intent;
         intent = new Intent(this, DiaryActivity.class);
-        finish();
         startActivity(intent);
     }
 
-    /*
-    뒤로가기 참고: https://atomic0x90.github.io/android-studio/2020/02/28/android-studio-back-button.html
-     */
+    // 뒤로가기 참고: https://atomic0x90.github.io/android-studio/2020/02/28/android-studio-back-button.html
     private long backKeyPressedTime = 0; // 마지막으로 뒤로 가기 버튼을 눌렀던 시간
     private Toast toast;
     @Override
@@ -162,5 +151,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (System.currentTimeMillis() <= backKeyPressedTime + 2500) {
             finish();
         }
+    }
+
+    // 새로고침 함수
+    @Override
+    public void onResume(){
+        super.onResume();
+        initRecyclerView(); // 리사이클러뷰 초기화
+        selectAllDB(); // 리사이클러뷰 다시 로딩
     }
 }

@@ -40,10 +40,6 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
         cancelBtn.setOnClickListener(this);
         saveBtn.setOnClickListener(this);
 
-        // tool bar
-        ImageView ivMenu=findViewById(R.id.iv_menu);
-        ivMenu.setOnClickListener(this);
-
         item = MainActivity.item;
         if (item!=null){
             titleEditTV.setText(item.getTitle());
@@ -80,9 +76,9 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
                     DBHelper.insert(getApplicationContext(), title, category, delay, content);
                 }
 
-                intent = new Intent(this, MainActivity.class);
+                // main activity refresh
+                ((MainActivity)MainActivity.CONTEXT).onResume();
                 finish();
-                startActivity(intent);
                 break;
 
             case R.id.cancle_btn :
@@ -92,20 +88,8 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
                 else{
                 }
 
-                intent = new Intent(this, MainActivity.class);
                 finish();
-                startActivity(intent);
-                break;
-
-            case R.id.iv_menu :
-                intent = new Intent(this, MainActivity.class);
-                finish();
-                startActivity(intent);
                 break;
         }
-    }
-
-    @Override
-    public void onBackPressed() { // 뒤로가기 버튼 비활성화
     }
 }

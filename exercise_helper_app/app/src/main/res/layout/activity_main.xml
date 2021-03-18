@@ -8,8 +8,6 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <include  layout="@layout/toolbar"/>
-
     <com.google.android.material.card.MaterialCardView
         android:padding="@dimen/layout_default_space"
         android:layout_width="match_parent"
@@ -18,102 +16,96 @@
         android:background="@color/white"
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
             android:layout_margin="@dimen/layout_default_space">
 
-
-            <ImageButton
-                android:id="@+id/dashboard_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toTopOf="@+id/tv2"
-                app:layout_constraintEnd_toEndOf="@+id/tv2"
-                app:layout_constraintStart_toStartOf="@+id/tv2"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/dashboard" />
-
-            <ImageButton
-                android:id="@+id/bluetooth_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toTopOf="@+id/tv1"
-                app:layout_constraintEnd_toEndOf="@+id/tv1"
-                app:layout_constraintStart_toStartOf="@+id/tv1"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/bluetooth" />
-
-            <ImageButton
-                android:id="@+id/diary_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toTopOf="@+id/tv3"
-                app:layout_constraintEnd_toEndOf="@+id/tv3"
-                app:layout_constraintStart_toStartOf="@+id/tv3"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/diary" />
-
-            <ImageButton
-                android:id="@+id/exercise_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toTopOf="@+id/tv4"
-                app:layout_constraintEnd_toEndOf="@+id/tv4"
-                app:layout_constraintStart_toStartOf="@+id/tv4"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/exercises" />
-
-            <TextView
-                android:id="@+id/tv1"
-                android:layout_width="wrap_content"
+            <!-- exercise button -->
+            <LinearLayout
+                android:layout_width="@dimen/icon_big_size"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginLeft="18dp"
-                android:text="Bluetooth"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageButton
+                    android:id="@+id/exercise_btn"
+                    android:layout_width="@dimen/icon_default_size"
+                    android:layout_height="@dimen/icon_default_size"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/exercises" />
 
-            <TextView
-                android:id="@+id/tv2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:text="Dashboard"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv1" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Exercise"/>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv3"
-                android:layout_width="wrap_content"
+            <!-- diary button -->
+            <LinearLayout
+                android:layout_width="@dimen/icon_big_size"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:text="Create Diary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv2" />
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageButton
+                    android:id="@+id/diary_btn"
+                    android:layout_width="@dimen/icon_default_size"
+                    android:layout_height="@dimen/icon_default_size"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/diary" />
 
-            <TextView
-                android:id="@+id/tv4"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Create Diary"/>
+            </LinearLayout>
+
+            <!-- dashboard button -->
+            <LinearLayout
+                android:layout_width="@dimen/icon_big_size"
                 android:layout_height="wrap_content"
-                android:text="Exercise"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv3" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageButton
+                    android:id="@+id/dashboard_btn"
+                    android:layout_width="@dimen/icon_default_size"
+                    android:layout_height="@dimen/icon_default_size"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/dashboard" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dashboard" />
+            </LinearLayout>
+
+            <!-- initialization button -->
+            <LinearLayout
+                android:layout_width="@dimen/icon_big_size"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageButton
+                    android:id="@+id/initialization_btn"
+                    android:layout_width="@dimen/icon_default_size"
+                    android:layout_height="@dimen/icon_default_size"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/refresh" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="initialization"/>
+            </LinearLayout>
+    </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
+    <!-- recyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_main_list"
         android:layout_width="match_parent"

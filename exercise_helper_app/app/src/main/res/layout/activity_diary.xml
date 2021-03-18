@@ -5,38 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DiaryActivity"
-    android:orientation="vertical">
-
-    <include layout="@layout/toolbar"/>
+    android:orientation="vertical"
+    android:layout_margin="@dimen/layout_big_space">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="아이디"
         android:textSize="@dimen/big_title_font_size"
-        android:layout_marginRight="@dimen/layout_default_space"
-        android:layout_marginLeft="@dimen/layout_default_space"
-        android:layout_marginTop="@dimen/layout_default_space"/>
+        tools:ignore="Suspicious0dp" />
 
     <EditText
         android:id="@+id/id_editTV"
-        android:padding="@dimen/layout_default_space"
         android:textColor="@color/black"
         android:background="@drawable/memo_border"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginRight="@dimen/layout_default_space"
-        android:layout_marginLeft="@dimen/layout_default_space"
-        android:layout_marginTop="@dimen/layout_default_space"/>
+        tools:ignore="Suspicious0dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="제목"
         android:textSize="@dimen/big_title_font_size"
-        android:layout_marginRight="@dimen/layout_default_space"
-        android:layout_marginLeft="@dimen/layout_default_space"
-        android:layout_marginTop="@dimen/layout_default_space"/>
+        android:layout_marginBottom="@dimen/layout_default_space"/>
 
     <EditText
         android:id="@+id/title_editTV"
@@ -45,18 +37,14 @@
         android:background="@drawable/memo_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/layout_default_space"
-        android:layout_marginLeft="@dimen/layout_default_space"
-        android:layout_marginTop="@dimen/layout_default_space"/>
+        android:layout_marginBottom="@dimen/layout_default_space"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="운동 부위"
         android:textSize="@dimen/big_title_font_size"
-        android:layout_marginRight="@dimen/layout_default_space"
-        android:layout_marginLeft="@dimen/layout_default_space"
-        android:layout_marginTop="@dimen/layout_default_space"/>
+        android:layout_marginBottom="@dimen/layout_default_space"/>
 
     <EditText
         android:id="@+id/category_editTV"
@@ -65,18 +53,14 @@
         android:background="@drawable/memo_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/layout_default_space"
-        android:layout_marginLeft="@dimen/layout_default_space"
-        android:layout_marginTop="@dimen/layout_default_space"/>
+        android:layout_marginBottom="@dimen/layout_default_space"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="온동 시간"
+        android:text="운동 시간"
         android:textSize="@dimen/big_title_font_size"
-        android:layout_marginRight="@dimen/layout_default_space"
-        android:layout_marginLeft="@dimen/layout_default_space"
-        android:layout_marginTop="@dimen/layout_default_space"/>
+        android:layout_marginBottom="@dimen/layout_default_space"/>
 
     <EditText
         android:id="@+id/delay_editTV"
@@ -85,18 +69,14 @@
         android:background="@drawable/memo_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/layout_default_space"
-        android:layout_marginLeft="@dimen/layout_default_space"
-        android:layout_marginTop="@dimen/layout_default_space"/>
+        android:layout_marginBottom="@dimen/layout_default_space"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="내용"
         android:textSize="@dimen/big_title_font_size"
-        android:layout_marginRight="@dimen/layout_default_space"
-        android:layout_marginLeft="@dimen/layout_default_space"
-        android:layout_marginTop="@dimen/layout_default_space"/>
+        android:layout_marginBottom="@dimen/layout_default_space"/>
 
     <EditText
         android:id="@+id/content_editTV"
@@ -105,25 +85,21 @@
         android:background="@drawable/memo_border"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginRight="@dimen/layout_default_space"
-        android:layout_marginLeft="@dimen/layout_default_space"
-        android:layout_marginTop="@dimen/layout_default_space"/>
+        android:layout_marginBottom="@dimen/layout_default_space"/>
 
     <TextView
         android:id="@+id/time_textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="작성시간"
-        android:textSize="@dimen/big_title_font_size"
-        android:layout_marginRight="@dimen/layout_default_space"
-        android:layout_marginLeft="@dimen/layout_default_space"
-        android:layout_marginTop="@dimen/layout_default_space"/>
+        android:textSize="@dimen/big_title_font_size"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="2">
+        android:weightSum="2"
+        android:layout_marginTop="@dimen/layout_default_space">
 
         <Button
             android:textSize="@dimen/default_font_size"
@@ -132,7 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="SAVE"
-            android:layout_margin="@dimen/layout_default_space"/>
+            android:layout_marginRight="@dimen/layout_default_space"/>
 
         <Button
             android:textSize="@dimen/default_font_size"
@@ -141,7 +117,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="CANCLE"
-            android:layout_margin="@dimen/layout_default_space"/>
+            android:layout_marginLeft="@dimen/layout_default_space"/>
     </LinearLayout>
 
 </LinearLayout>
