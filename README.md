@@ -15,21 +15,23 @@
 ## ICON
 
 <p float="left">
-    <img src="exercise_helper_app\app\src\main\res\drawable\play.png" alt="dashboard" style="zoom:25%;" />
-        <img src="exercise_helper_app\app\src\main\res\drawable\stop.png" alt="dashboard" style="zoom:25%;" />
-        <img src="exercise_helper_app\app\src\main\res\drawable\reset.png" alt="dashboard" style="zoom:25%;" />
+    <img src="exercise_helper_app\app\src\main\res\drawable\play.png" width="100">
+        <img src="exercise_helper_app\app\src\main\res\drawable\stop.png" width="100">
+        <img src="exercise_helper_app\app\src\main\res\drawable\reset.png" width="100">
 </p>
+
 
 <div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
 <p float="left">
-    <img src="exercise_helper_app\app\src\main\res\drawable\exercises.png" alt="dashboard" style="zoom:25%;" />
-        <img src="exercise_helper_app\app\src\main\res\drawable\diary.png" alt="dashboard" style="zoom:25%;" />
+    <img src="exercise_helper_app\app\src\main\res\drawable\exercises.png" width="100">
+        <img src="exercise_helper_app\app\src\main\res\drawable\diary.png" width="100">
     <img 
-    src="exercise_helper_app\app\src\main\res\drawable\refresh.png" alt="dashboard" style="zoom:25%;" />
+    src="exercise_helper_app\app\src\main\res\drawable\refresh.png" width="100">
         <img 
-    src="exercise_helper_app\app\src\main\res\drawable\dashboard.png" alt="dashboard" style="zoom:25%;" />
+    src="exercise_helper_app\app\src\main\res\drawable\dashboard.png" width="100">
 </p>
+
 
 <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
