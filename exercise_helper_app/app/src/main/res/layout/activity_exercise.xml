@@ -6,63 +6,137 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/khu_notifications_card"
+    <LinearLayout
+        android:layout_margin="@dimen/layout_big_space"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/layout_default_space"
-        android:background="@color/white"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="4dp">
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <EditText
+            android:layout_weight="1"
+            android:layout_margin="@dimen/layout_default_space"
+            android:hint="운동할 근육을 입력"
+            android:id="@+id/category_editTV2"
+            android:padding="@dimen/layout_default_space"
+            android:textColor="@color/black"
+            android:background="@drawable/memo_border"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/layout_default_space"/>
 
-        <LinearLayout
+        <TextView
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/layout_default_space"
-            android:orientation="vertical">
+            android:text="운동을 시작합니다."
+            android:textSize="@dimen/big_title_font_size"/>
+    </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/layout_default_space"
-                android:text="MyStrength"
-                android:textSize="@dimen/big_title_font_size"
-                android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
 
-            <com.dinuscxj.progressbar.CircleProgressBar
-                android:layout_margin="@dimen/layout_default_space"
-                android:layout_gravity="center"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                app:progress_text_size="50sp"
-                app:style="solid_line"
-                app:progress_stroke_width="20dp "
-                app:progress_stroke_cap="round"
-                app:progress_start_color="#FFBB00"
-                app:progress_end_color="#ABF200"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:id="@+id/progress" />
+        <ImageButton
+            android:layout_gravity="center"
+            android:layout_width="@dimen/icon_default_size"
+            android:layout_height="@dimen/icon_default_size"
+            android:src="@drawable/play"
+            android:scaleType="fitCenter"
+            android:id="@+id/playBtn"
+            android:background="@color/transparent"
+            android:layout_margin="@dimen/layout_small_space"/>
 
-            <Button
-                style="@style/Widget.MaterialComponents.Button"
-                android:id="@+id/btnConnect"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="2"
-                android:text="connect"
-                android:textSize="@dimen/default_font_size"/>
+        <ImageButton
+            android:layout_gravity="center"
+            android:layout_width="@dimen/icon_default_size"
+            android:layout_height="@dimen/icon_default_size"
+            android:src="@drawable/stop"
+            android:scaleType="fitCenter"
+            android:id="@+id/stopBtn"
+            android:background="@color/transparent"
+            android:layout_margin="@dimen/layout_small_space"/>
 
-            <TextView
-                android:id="@+id/textViewReceive"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/layout_default_space"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Not connected..."
-                android:textSize="@dimen/default_font_size"/>
+        <ImageButton
+            android:layout_gravity="center"
+            android:layout_width="@dimen/icon_default_size"
+            android:layout_height="@dimen/icon_default_size"
+            android:src="@drawable/reset"
+            android:scaleType="fitCenter"
+            android:id="@+id/resetBtn"
+            android:background="@color/transparent"
+            android:layout_margin="@dimen/layout_small_space"/>
 
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+        <TextView
+        android:id="@+id/myTimerTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/layout_default_space"
+        android:text="00 : 00 : 00"
+        android:textSize="@dimen/timer_font_size"
+        android:textStyle="bold" />
+    </LinearLayout>
+
+    <ProgressBar
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/layout_big_space"
+        android:layout_marginLeft="@dimen/layout_big_space"/>
+
+    <!--<com.dinuscxj.progressbar.CircleProgressBar
+        android:layout_margin="@dimen/layout_default_space"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:progress_text_size="50sp"
+        app:style="solid_line"
+        app:progress_stroke_width="20dp "
+        app:progress_stroke_cap="round"
+        app:progress_start_color="#FFBB00"
+        app:progress_end_color="#ABF200"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:id="@+id/progress" />
+-->
+    <TextView
+        android:id="@+id/textViewReceive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/layout_default_space"
+        android:gravity="center"
+        android:text="Not connected..."
+        android:textSize="@dimen/default_font_size"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <Button
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/layout_big_space"
+            android:layout_marginRight="@dimen/layout_default_space"
+            style="@style/Widget.MaterialComponents.Button"
+            android:id="@+id/btnConnect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="connect"
+            android:textSize="@dimen/default_font_size"/>
+
+        <Button
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/layout_default_space"
+            android:layout_marginRight="@dimen/layout_big_space"
+            style="@style/Widget.MaterialComponents.Button"
+            android:id="@+id/createDiaryBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Create Diary"
+            android:textSize="@dimen/default_font_size"/>
+    </LinearLayout>
 </LinearLayout>

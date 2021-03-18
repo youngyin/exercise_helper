@@ -9,4 +9,7 @@
     <dimen name="icon_default_size">50dp</dimen>
     <dimen name="icon_big_size">90dp</dimen>
     <dimen name="layout_big_space">20dp</dimen>
+    <dimen name="icon_small_size">40dp</dimen>
+    <dimen name="timer_font_size">35dp</dimen>
+    <dimen name="layout_small_space">4dp</dimen>
 </resources>

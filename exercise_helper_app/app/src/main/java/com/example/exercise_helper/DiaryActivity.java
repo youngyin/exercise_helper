@@ -1,11 +1,9 @@
 package com.example.exercise_helper;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,10 +46,15 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
             delayEditTV.setText(item.getDelay());
             idEditTV.setText(item.getId());
             timeTV.setText(item.getTime());
-            saveBtn.setText("modify");
-            cancelBtn.setText("delete");
-        }
-        else {
+            // case 1. exercise에서 넘어옴
+
+            // case 2. 리사이클러뷰 선택하여 수정
+            if (!item.getId().equals("")){
+                saveBtn.setText("modify");
+                cancelBtn.setText("delete");
+            }
+        }else {
+            // 새로운 값 저장
             timeTV.setText("");
             timeTV.setHeight(0);
         }
@@ -60,8 +63,6 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        Intent intent;
-
         switch (v.getId()){
             case R.id.save_btn :
                 String title = titleEditTV.getText().toString();
@@ -70,9 +71,14 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
                 String content = contentEditTv.getText().toString();
 
                 if (item!=null){
-                    DBHelper.update(getApplicationContext(), item.getId(), title, category, delay, content);
+                    if (item.getId()==""){ // exercise에서 넘어옴
+                        DBHelper.insert(getApplicationContext(), title, category, delay, content);
+                    }
+                    else{ // 리사이클러뷰 선택하여 수정
+                        DBHelper.update(getApplicationContext(), item.getId(), title, category, delay, content);
+                    }
                 }
-                else{
+                else{ // 새로운 값 저장
                     DBHelper.insert(getApplicationContext(), title, category, delay, content);
                 }
 
@@ -82,10 +88,15 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.cancle_btn :
+
                 if (item!=null){
-                    DBHelper.delete(getApplicationContext(), item.getId());
+                    if (item.getId()==""){ // exercise에서 넘어옴
+                    }
+                    else{ // 리사이클러뷰 선택하여 삭제
+                        DBHelper.delete(getApplicationContext(), item.getId());
+                    }
                 }
-                else{
+                else{ // 새로운 값 저장
                 }
 
                 finish();
