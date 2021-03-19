@@ -40,19 +40,21 @@
         android:layout_marginBottom="@dimen/layout_default_space"/>
 
     <TextView
+        android:text="운동할 근육"
+        android:id="@+id/category_textview2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="운동 부위"
         android:textSize="@dimen/big_title_font_size"
         android:layout_marginBottom="@dimen/layout_default_space"/>
 
-    <EditText
-        android:id="@+id/category_editTV"
+    <Spinner
         android:padding="@dimen/layout_default_space"
         android:textColor="@color/black"
         android:background="@drawable/memo_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/category_spinner"
+        android:entries="@array/muscle"
         android:layout_marginBottom="@dimen/layout_default_space"/>
 
     <TextView

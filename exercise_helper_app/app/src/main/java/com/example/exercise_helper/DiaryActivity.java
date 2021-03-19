@@ -2,21 +2,26 @@ package com.example.exercise_helper;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class DiaryActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText titleEditTV;
-    EditText categoryEditTV;
-    EditText delayEditTV;
-    EditText contentEditTv;
-    EditText idEditTV;
-    TextView timeTV;
+public class DiaryActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+    private EditText titleEditTV;
+    private EditText delayEditTV;
+    private EditText contentEditTv;
+    private EditText idEditTV;
+    private TextView timeTV;
+    private TextView categoryTV;
+    private Spinner categorySpinner;
 
-    Dictionary item;
+    private Dictionary item;
+
+    private String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +35,28 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
         Button saveBtn = findViewById(R.id.save_btn);
         idEditTV = findViewById(R.id.id_editTV);
         titleEditTV = findViewById(R.id.title_editTV);
-        categoryEditTV = findViewById(R.id.category_editTV);
         delayEditTV = findViewById(R.id.delay_editTV);
         contentEditTv = findViewById(R.id.content_editTV);
         timeTV = findViewById(R.id.time_textView2);
+        categorySpinner = findViewById(R.id.category_spinner);
+        categoryTV = findViewById(R.id.category_textview2);
 
         cancelBtn.setOnClickListener(this);
         saveBtn.setOnClickListener(this);
+        categorySpinner.setOnItemSelectedListener(this);
 
         item = MainActivity.item;
         if (item!=null){
+            String[] musle = getResources().getStringArray(R.array.muscle);
+            for (int i = 0; i<musle.length; i++){
+                if (musle[i].equals(item.getCategory())){
+                    categorySpinner.setSelection(i);
+                    break;
+                }
+            }
+
             titleEditTV.setText(item.getTitle());
-            categoryEditTV.setText(item.getCategory());
+            categoryTV.setText("운동할 근육: "+item.getCategory() + "");
             contentEditTv.setText(item.getContent());
             delayEditTV.setText(item.getDelay());
             idEditTV.setText(item.getId());
@@ -66,7 +81,6 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
             case R.id.save_btn :
                 String title = titleEditTV.getText().toString();
-                String category = categoryEditTV.getText().toString();
                 String delay = delayEditTV.getText().toString();
                 String content = contentEditTv.getText().toString();
 
@@ -102,5 +116,17 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
                 finish();
                 break;
         }
+    }
+
+    // spinner event
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        category = ""+parent.getItemAtPosition(position);
+        categoryTV.setText("운동할 근육: "+category);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        categoryTV.setText("운동할 근육");
     }
 }

@@ -5,8 +5,10 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,16 +21,17 @@ import app.akexorcist.bluetotohspp.library.BluetoothSPP;
 import app.akexorcist.bluetotohspp.library.BluetoothState;
 import app.akexorcist.bluetotohspp.library.DeviceList;
 
-public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.OnDataReceivedListener, BluetoothSPP.BluetoothConnectionListener, View.OnClickListener {
+public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.OnDataReceivedListener, BluetoothSPP.BluetoothConnectionListener, View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     private BluetoothSPP bt;
     private Button btnConnect;
     private ProgressBar progressBar;
     private TextView timerTextview;
-    private TextView categoryTV;
+    private Spinner categorySpinner;
 
     public static Integer mytime;
     private static String timerState;
+    private String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +41,14 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
         progressBar = findViewById(R.id.progress);
         btnConnect = findViewById(R.id.btnConnect);
         timerTextview = findViewById(R.id.myTimerTV);
-        categoryTV = findViewById(R.id.category_editTV2);
+        categorySpinner = findViewById(R.id.category_spinner2);
 
         btnConnect.setOnClickListener(this);
         findViewById(R.id.playBtn).setOnClickListener(this);
         findViewById(R.id.stopBtn).setOnClickListener(this);
         findViewById(R.id.resetBtn).setOnClickListener(this);
         findViewById(R.id.createDiaryBtn).setOnClickListener(this);
+        categorySpinner.setOnItemSelectedListener(this);
 
         bt = new BluetoothSPP(this); //Initializing
         bt.setOnDataReceivedListener(this); // 데이터 수신
@@ -194,7 +198,7 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
 
             case R.id.createDiaryBtn :
                 Intent intent = new Intent(this, DiaryActivity.class);
-                MainActivity.item = new Dictionary("", "", categoryTV.getText().toString(), timerTextview.getText().toString(), "", "");
+                MainActivity.item = new Dictionary("", "", category, timerTextview.getText().toString(), "", "");
                 finish();
                 startActivity(intent);
                 break;
@@ -211,5 +215,15 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
     public void onStart() {
         super.onStart();
         activateBluetooth(); // 블루투스 활성화
+    }
+
+    // spinner event
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        category = ""+parent.getItemAtPosition(position);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
     }
 }

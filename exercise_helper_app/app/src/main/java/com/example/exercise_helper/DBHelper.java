@@ -26,19 +26,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String mySQL = "create table if not exists " + DATABASE_NAME + "("+
-                COL_1 +" integer primary key autoincrement, "+
-                COL_2 +" text, "+
-                COL_3 +" text, "+
-                COL_4 +" text, "+
-                COL_5 +" text, "+
-                COL_6 + " text)";
+        String mySQL = String.format(
+                "create table if not exists %s (" +
+                "%s integer primary key autoincrement, " +
+                "%s text, %s text, %s text, %s text, %s text);",
+                DATABASE_NAME, COL_1, COL_2, COL_3, COL_4, COL_5, COL_6);
         db.execSQL(mySQL);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String mySQL = "drop table "+DATABASE_NAME;
+        String mySQL = String.format("drop table %s;", DATABASE_NAME);
         db.execSQL(mySQL);
         onCreate(db);
     }
@@ -46,7 +44,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static void delete(Context context, String _id){
         SQLiteOpenHelper myDBHelper = new DBHelper(context);
         SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
-        sqlDB.execSQL("delete from "+DBHelper.DATABASE_NAME+" where _ID="+_id);
+        String mySQL = String.format("delete from %s where _ID = %s;", DATABASE_NAME, _id);
+        sqlDB.execSQL(mySQL);
         Toast.makeText(context,"삭제되었습니다.",Toast.LENGTH_SHORT).show();
 
     }
@@ -57,7 +56,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
         SQLiteOpenHelper myDBHelper = new DBHelper(context);
         SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
-        sqlDB.execSQL("INSERT INTO "+DBHelper.DATABASE_NAME+" (title, category, delay, content, _time) VALUES ( '" + title + "', '"+ category +"', '"+ delay+"', '"+ content+"', '"+ _time+"');");
+        String mySQL = String.format(
+                "insert into %s (%s, %s, %s, %s, %s) values ('%s', '%s', '%s', '%s', '%s');",
+                DATABASE_NAME, COL_2, COL_3, COL_4, COL_5, COL_6, title, category, delay, content, _time);
+        sqlDB.execSQL(mySQL);
         sqlDB.close();
         Toast.makeText(context,"저장되었습니다.",Toast.LENGTH_SHORT).show();
     }
@@ -65,12 +67,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public static void update(Context context, String _id, String title, String category, String delay, String content){
         SQLiteOpenHelper myDBHelper = new DBHelper(context);
         SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
-        sqlDB.execSQL("update "+DBHelper.DATABASE_NAME
-                +" set title='"+title+"',"
-                +" category='"+category+"',"
-                +" delay='"+delay+"',"
-                +" content='"+content+"'"
-                +" where _ID="+_id);
+        String mySQL = String.format(
+                "update %s set %s = '%s', %s = '%s', %s = '%s', %s = '%s' where _ID = %s;"
+                , DATABASE_NAME, COL_2, title, COL_3, category, COL_4, delay, COL_5, content, _id);
+        sqlDB.execSQL(mySQL);
         sqlDB.close();
         Toast.makeText(context,"수정되었습니다.",Toast.LENGTH_SHORT).show();
     }
@@ -78,7 +78,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public static Cursor selectAll(Context context){
         DBHelper dbHelper = new DBHelper(context);
         SQLiteDatabase sqlDB = dbHelper.getWritableDatabase();
-        Cursor cursor = sqlDB.rawQuery("select _id, title, category, delay, content, _time from "+ DBHelper.DATABASE_NAME+" order by _id DESC", null);
+        String mySQL = String.format(
+                "select %s, %s, %s, %s, %s, %s from %s order by _id DESC;"
+                , COL_1, COL_2, COL_3, COL_4, COL_5, COL_6, DATABASE_NAME);
+        Cursor cursor = sqlDB.rawQuery(mySQL, null);
         return cursor;
     }
 

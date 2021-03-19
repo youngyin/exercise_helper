@@ -12,25 +12,26 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="2">
-        <EditText
+        <Spinner
             android:layout_weight="1"
-            android:layout_margin="@dimen/layout_default_space"
-            android:hint="운동할 근육을 입력"
-            android:id="@+id/category_editTV2"
             android:padding="@dimen/layout_default_space"
             android:textColor="@color/black"
             android:background="@drawable/memo_border"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/category_spinner2"
+            android:entries="@array/muscle"
             android:layout_marginBottom="@dimen/layout_default_space"/>
 
         <TextView
+            android:gravity="center"
             android:layout_weight="1"
+            android:text= "운동을 시작합니다."
+            android:id="@+id/category_textview3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/layout_default_space"
-            android:text="운동을 시작합니다."
-            android:textSize="@dimen/big_title_font_size"/>
+            android:textSize="@dimen/big_title_font_size"
+            android:layout_marginBottom="@dimen/layout_default_space"/>
     </LinearLayout>
 
     <LinearLayout
