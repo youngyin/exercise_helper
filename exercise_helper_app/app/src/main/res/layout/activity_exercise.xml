@@ -7,32 +7,47 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_margin="@dimen/layout_big_space"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="horizontal"
-        android:weightSum="2">
+        android:gravity="center"
+        android:layout_margin="@dimen/layout_big_space"
+        tools:ignore="Suspicious0dp">
+        <TextView
+            android:textStyle="bold"
+            android:text= "운동할 근육"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/big_title_font_size"
+            android:layout_marginRight="@dimen/layout_big_space"/>
+
         <Spinner
-            android:layout_weight="1"
             android:padding="@dimen/layout_default_space"
             android:textColor="@color/black"
             android:background="@drawable/memo_border"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:id="@+id/category_spinner2"
-            android:entries="@array/muscle"
-            android:layout_marginBottom="@dimen/layout_default_space"/>
-
-        <TextView
-            android:gravity="center"
-            android:layout_weight="1"
-            android:text= "운동을 시작합니다."
-            android:id="@+id/category_textview3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/big_title_font_size"
-            android:layout_marginBottom="@dimen/layout_default_space"/>
+            android:entries="@array/muscle"/>
     </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="@dimen/layout_big_space"
+        android:textStyle="bold"
+        android:text= "CONNECT DEVICE"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/big_title_font_size"
+        android:layout_margin="@dimen/layout_default_space"/>
+
+    <TextView
+        android:id="@+id/myTimerTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00 : 00 : 00"
+        android:textSize="@dimen/timer_font_size"
+        android:layout_gravity="center"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,14 +85,6 @@
             android:background="@color/transparent"
             android:layout_margin="@dimen/layout_small_space"/>
 
-        <TextView
-        android:id="@+id/myTimerTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/layout_default_space"
-        android:text="00 : 00 : 00"
-        android:textSize="@dimen/timer_font_size"
-        android:textStyle="bold" />
     </LinearLayout>
 
     <ProgressBar
@@ -88,20 +95,6 @@
         android:layout_marginRight="@dimen/layout_big_space"
         android:layout_marginLeft="@dimen/layout_big_space"/>
 
-    <!--<com.dinuscxj.progressbar.CircleProgressBar
-        android:layout_margin="@dimen/layout_default_space"
-        android:layout_gravity="center"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:progress_text_size="50sp"
-        app:style="solid_line"
-        app:progress_stroke_width="20dp "
-        app:progress_stroke_cap="round"
-        app:progress_start_color="#FFBB00"
-        app:progress_end_color="#ABF200"
-        style="@android:style/Widget.ProgressBar.Horizontal"
-        android:id="@+id/progress" />
--->
     <TextView
         android:id="@+id/textViewReceive"
         android:layout_width="match_parent"
@@ -111,33 +104,25 @@
         android:text="Not connected..."
         android:textSize="@dimen/default_font_size"/>
 
-    <LinearLayout
+    <Button
+        style="@style/Widget.MaterialComponents.Button"
+        android:id="@+id/btnConnect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-        <Button
-            android:layout_weight="1"
-            android:layout_marginLeft="@dimen/layout_big_space"
-            android:layout_marginRight="@dimen/layout_default_space"
-            style="@style/Widget.MaterialComponents.Button"
-            android:id="@+id/btnConnect"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="connect"
-            android:textSize="@dimen/default_font_size"/>
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/layout_big_space"
+        android:layout_marginRight="@dimen/layout_big_space"
+        android:text="connect"
+        android:textSize="@dimen/default_font_size"/>
 
-        <Button
-            android:layout_weight="1"
-            android:layout_marginLeft="@dimen/layout_default_space"
-            android:layout_marginRight="@dimen/layout_big_space"
-            style="@style/Widget.MaterialComponents.Button"
-            android:id="@+id/createDiaryBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Create Diary"
-            android:textSize="@dimen/default_font_size"/>
-    </LinearLayout>
+    <Button
+        style="@style/Widget.MaterialComponents.Button"
+        android:id="@+id/createDiaryBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/layout_big_space"
+        android:layout_marginRight="@dimen/layout_big_space"
+        android:text="Create Diary"
+        android:textSize="@dimen/default_font_size"/>
 </LinearLayout>

@@ -185,14 +185,29 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
                 break;
 
             case R.id.playBtn:
+                try {
+                    bt.send("1", true);
+                } catch (Exception e){
+
+                }
                 timerState = "play";
                 break;
 
             case R.id.stopBtn :
+                try {
+                    bt.send("3", true);
+                } catch (Exception e){
+
+                }
                 timerState = "stop";
                 break;
 
             case R.id.resetBtn :
+                try {
+                    bt.send("5", true);
+                } catch (Exception e){
+
+                }
                 timerState = "reset";
                 break;
 

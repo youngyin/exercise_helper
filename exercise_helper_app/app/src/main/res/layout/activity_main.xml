@@ -21,10 +21,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/layout_default_space">
+            android:layout_margin="@dimen/layout_default_space"
+            android:weightSum="4">
 
             <!-- exercise button -->
             <LinearLayout
+                android:layout_weight="1"
                 android:layout_width="@dimen/icon_big_size"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -45,6 +47,7 @@
 
             <!-- diary button -->
             <LinearLayout
+                android:layout_weight="1"
                 android:layout_width="@dimen/icon_big_size"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -65,6 +68,7 @@
 
             <!-- dashboard button -->
             <LinearLayout
+                android:layout_weight="1"
                 android:layout_width="@dimen/icon_big_size"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -85,6 +89,7 @@
 
             <!-- initialization button -->
             <LinearLayout
+                android:layout_weight="1"
                 android:layout_width="@dimen/icon_big_size"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"

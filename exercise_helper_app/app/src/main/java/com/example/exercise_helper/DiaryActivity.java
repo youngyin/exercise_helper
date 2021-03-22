@@ -96,8 +96,6 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
                     DBHelper.insert(getApplicationContext(), title, category, delay, content);
                 }
 
-                // main activity refresh
-                ((MainActivity)MainActivity.CONTEXT).onResume();
                 finish();
                 break;
 

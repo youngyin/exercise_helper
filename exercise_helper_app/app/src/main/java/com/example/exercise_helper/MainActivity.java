@@ -24,17 +24,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CustomAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
-    public static Context CONTEXT;
+
+    private DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        CONTEXT = this;
 
-        initView();
-        initRecyclerView();
-        selectAllDB();
+        try {
+            initView();
+            initRecyclerView();
+            selectAllDB();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void initView(){
