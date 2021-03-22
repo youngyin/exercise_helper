@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -26,19 +27,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayoutManager mLinearLayoutManager;
 
     private DBHelper dbHelper;
+    private MyPointer myPointer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        try {
-            initView();
-            initRecyclerView();
-            selectAllDB();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+        dbHelper = new DBHelper(getApplicationContext()); // connect db
+
+        initView();
+        initRecyclerView();
+        selectAllDB();
     }
 
     private void initView(){
@@ -68,15 +68,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void selectAllDB() {
-        Cursor cursor = DBHelper.selectAll(getApplicationContext());
+        Cursor cursor = dbHelper.select_all();
 
         while (cursor.moveToNext()){
-            Dictionary data = new Dictionary(cursor.getString(0),
+            Dictionary data = new Dictionary(
+                    cursor.getString(0),
                     cursor.getString(1),
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getString(4),
-                    cursor.getString(5));
+                    cursor.getString(5),
+                    cursor.getString(6));
+
             mArrayList.add(data); // RecyclerView의 마지막 줄에 삽입
             mAdapter.notifyDataSetChanged();
         }
@@ -102,6 +105,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.diary_btn :
+                myPointer.setMode(myPointer.getCREATE_MODE());
+
                 intent = new Intent(this, DiaryActivity.class);
                 startActivity(intent);
                 break;
@@ -131,7 +136,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     // 리사이클러뷰 클릭 이벤트
-    public static Dictionary item = null;
     @Override
     public void onItemClick(View v, int position) {
         //Toast.makeText(this, item.getId()+" 를 클릭!!", Toast.LENGTH_LONG).show();

@@ -35,7 +35,7 @@
     <TextView
         android:id="@+id/delay_textview"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:textSize="@dimen/default_font_size"
         android:text="delay"/>
 
@@ -52,5 +52,12 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/default_font_size"
         android:text="time"/>
+
+    <TextView
+        android:id="@+id/average_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/default_font_size"
+        android:text="average"/>
 
 </LinearLayout>

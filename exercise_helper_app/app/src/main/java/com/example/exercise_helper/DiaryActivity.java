@@ -18,21 +18,34 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
     private TextView timeTV;
     private TextView categoryTV;
     private Spinner categorySpinner;
+    private Button cancelBtn;
+    private Button saveBtn;
 
-    private Dictionary item;
+    private DBHelper dbHelper;
 
     private String category;
+    private String mode;
+    private Dictionary dictionary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary);
+
+        // connect db
+        dbHelper = new DBHelper(getApplicationContext());
+
+        // 전달 받은 데이터 세팅
+        mode = MyPointer.getMode();
+        dictionary = MyPointer.getDictionary();
+
         initView();
+        modifyView();
     }
 
     private void initView(){
-        Button cancelBtn = findViewById(R.id.cancle_btn);
-        Button saveBtn = findViewById(R.id.save_btn);
+        cancelBtn = findViewById(R.id.cancle_btn);
+        saveBtn = findViewById(R.id.save_btn);
         idEditTV = findViewById(R.id.id_editTV);
         titleEditTV = findViewById(R.id.title_editTV);
         delayEditTV = findViewById(R.id.delay_editTV);
@@ -44,36 +57,55 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
         cancelBtn.setOnClickListener(this);
         saveBtn.setOnClickListener(this);
         categorySpinner.setOnItemSelectedListener(this);
+    }
 
-        item = MainActivity.item;
-        if (item!=null){
+    private void modifyView(){
+        if (mode.equals(MyPointer.getCREATE_EXERCISE_MODE())){ // main -> exercise -> diary
+            // 근육 선택창 설정
             String[] musle = getResources().getStringArray(R.array.muscle);
             for (int i = 0; i<musle.length; i++){
-                if (musle[i].equals(item.getCategory())){
+                if (musle[i].equals(dictionary.getCategory())){
                     categorySpinner.setSelection(i);
                     break;
                 }
             }
 
-            titleEditTV.setText(item.getTitle());
-            categoryTV.setText("운동할 근육: "+item.getCategory() + "");
-            contentEditTv.setText(item.getContent());
-            delayEditTV.setText(item.getDelay());
-            idEditTV.setText(item.getId());
-            timeTV.setText(item.getTime());
-            // case 1. exercise에서 넘어옴
+            // editText 설정
+            titleEditTV.setText(dictionary.getTitle());
+            categoryTV.setText("운동할 근육: "+dictionary.getCategory() + "");
+            contentEditTv.setText(dictionary.getContent());
+            delayEditTV.setText(dictionary.getDelay()+"");
+            idEditTV.setText(dictionary.getId());
+            timeTV.setText(dictionary.getTime());
 
-            // case 2. 리사이클러뷰 선택하여 수정
-            if (!item.getId().equals("")){
+        } else if(mode.equals(MyPointer.getCREATE_MODE())){ // main -> diary (click image button)
+            timeTV.setText("");
+            timeTV.setHeight(0);
+
+        } else if(mode.equals(MyPointer.getUPDATE_MODE())){ // main -> diary (click recyclerview)
+            // 근육 선택창 설정
+            String[] musle = getResources().getStringArray(R.array.muscle);
+            for (int i = 0; i<musle.length; i++){
+                if (musle[i].equals(dictionary.getCategory())){
+                    categorySpinner.setSelection(i);
+                    break;
+                }
+            }
+
+            // editText 설정
+            titleEditTV.setText(dictionary.getTitle());
+            categoryTV.setText("운동할 근육: "+dictionary.getCategory() + "");
+            contentEditTv.setText(dictionary.getContent());
+            delayEditTV.setText(dictionary.getDelay()+"");
+            idEditTV.setText(dictionary.getId());
+            timeTV.setText(dictionary.getTime());
+
+            // 버튼 설정
+            if (!dictionary.getId().equals("")){
                 saveBtn.setText("modify");
                 cancelBtn.setText("delete");
             }
-        }else {
-            // 새로운 값 저장
-            timeTV.setText("");
-            timeTV.setHeight(0);
         }
-        MainActivity.item = null;
     }
 
     @Override
@@ -81,36 +113,27 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
             case R.id.save_btn :
                 String title = titleEditTV.getText().toString();
-                String delay = delayEditTV.getText().toString();
+                String delay = "100"; // todo : 초단위
+                String average = "3.45"; // todo :
                 String content = contentEditTv.getText().toString();
 
-                if (item!=null){
-                    if (item.getId()==""){ // exercise에서 넘어옴
-                        DBHelper.insert(getApplicationContext(), title, category, delay, content);
-                    }
-                    else{ // 리사이클러뷰 선택하여 수정
-                        DBHelper.update(getApplicationContext(), item.getId(), title, category, delay, content);
-                    }
-                }
-                else{ // 새로운 값 저장
-                    DBHelper.insert(getApplicationContext(), title, category, delay, content);
+                if (mode.equals(MyPointer.getCREATE_EXERCISE_MODE())){ // main -> exercise -> diary
+                    dbHelper.insert(title, category, delay, content, average);
+                } else if(mode.equals(MyPointer.getCREATE_MODE())){ // main -> diary (click image button)
+                    dbHelper.insert(title, category, delay, content, average);
+                } else if(mode.equals(MyPointer.getUPDATE_MODE())){ // main -> diary (click recyclerview)
+                    dbHelper.update(dictionary.getId(), title, category, delay, content);
                 }
 
                 finish();
                 break;
 
             case R.id.cancle_btn :
-
-                if (item!=null){
-                    if (item.getId()==""){ // exercise에서 넘어옴
-                    }
-                    else{ // 리사이클러뷰 선택하여 삭제
-                        DBHelper.delete(getApplicationContext(), item.getId());
-                    }
+                if (mode.equals(MyPointer.getCREATE_EXERCISE_MODE())){ // main -> exercise -> diary
+                } else if(mode.equals(MyPointer.getCREATE_MODE())){ // main -> diary (click image button)
+                } else if(mode.equals(MyPointer.getUPDATE_MODE())){ // main -> diary (click recyclerview)
+                    dbHelper.delete(dictionary.getId());
                 }
-                else{ // 새로운 값 저장
-                }
-
                 finish();
                 break;
         }

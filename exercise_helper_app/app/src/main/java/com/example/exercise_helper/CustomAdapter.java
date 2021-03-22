@@ -36,7 +36,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         private TextView delay;
         private TextView content;
         private TextView time;
-        private LinearLayout linearLayout;
+        private TextView average;
 
         public CustomViewHolder(View view) {
             super(view);
@@ -46,9 +46,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             this.delay = (TextView) view.findViewById(R.id.delay_textview);
             this.content = (TextView) view.findViewById(R.id.content_textview);
             this.time = (TextView) view.findViewById(R.id.time_textview);
-            this.linearLayout = view.findViewById(R.id.item_linearLayout);
+            this.average = (TextView) view.findViewById(R.id.average_textview);
 
-            linearLayout.setOnClickListener(new View.OnClickListener() {
+            view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
@@ -60,9 +60,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                                     category.getText().toString(),
                                     delay.getText().toString(),
                                     content.getText().toString(),
-                                    time.getText().toString()
+                                    time.getText().toString(),
+                                    average.getText().toString()
                             );
-                            MainActivity.item = item;
+                            MyPointer.setDictionary(item);
+                            MyPointer.setMode(MyPointer.getUPDATE_MODE());
                             mListener.onItemClick(v, position);
                         }
                     }
@@ -109,6 +111,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         viewholder.category.setText(mList.get(position).getCategory());
         viewholder.content.setText(mList.get(position).getContent());
         viewholder.delay.setText(mList.get(position).getDelay());
+        viewholder.average.setText(mList.get(position).getAverage());
     }
 
     @Override
