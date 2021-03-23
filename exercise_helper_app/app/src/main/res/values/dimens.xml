@@ -15,4 +15,5 @@
     <dimen name="icon_big_size">90dp</dimen>
     <dimen name="icon_default_size">50dp</dimen>
     <dimen name="icon_small_size">40dp</dimen>
+    <dimen name="default_graph_size">200dp</dimen>
 </resources>

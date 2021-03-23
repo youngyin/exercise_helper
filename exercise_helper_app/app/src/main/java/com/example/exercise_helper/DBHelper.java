@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import java.security.PublicKey;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -105,6 +106,42 @@ public class DBHelper extends SQLiteOpenHelper {
                 "select %s, %s, %s, %s, %s, %s, %s from %s order by _id DESC;",
                 COL_NAME_ID, COL_NAME_TITLE, COL_NAME_CATEGORY, COL_NAME_DELAY, COL_NAME_CONTENT, COL_NAME_TIME, COL_NAME_AVERAGE,
                 TABLE_NAME_DIARY);
+        Cursor cursor = sqlDB.rawQuery(mySQL, null);
+        return cursor;
+    }
+
+    public Cursor select_count_id_from_diary_group_by_category(){
+        SQLiteOpenHelper myDBHelper = new DBHelper(context);
+        SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
+
+        String mySQL = "select count(_id), category from diary group by category;";
+        Cursor cursor = sqlDB.rawQuery(mySQL, null);
+        return cursor;
+    }
+
+    public Cursor select_count_id_from_diary_group_by_date(){
+        SQLiteOpenHelper myDBHelper = new DBHelper(context);
+        SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
+
+        String mySQL = "select count(_TIME), substr(_TIME , 0, 11) from DIARY group by substr(_TIME , 0, 11);";
+        Cursor cursor = sqlDB.rawQuery(mySQL, null);
+        return cursor;
+    }
+
+    public Cursor select_average_from_diary_group_by_category(){
+        SQLiteOpenHelper myDBHelper = new DBHelper(context);
+        SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
+
+        String mySQL = "select avg(_AVERAGE ), CATEGORY from DIARY group by CATEGORY;";
+        Cursor cursor = sqlDB.rawQuery(mySQL, null);
+        return cursor;
+    }
+
+    public Cursor select_sum_delay_from_diary_group_by_category(){
+        SQLiteOpenHelper myDBHelper = new DBHelper(context);
+        SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
+
+        String mySQL = "select sum(delay), CATEGORY from DIARY group by CATEGORY;";
         Cursor cursor = sqlDB.rawQuery(mySQL, null);
         return cursor;
     }
