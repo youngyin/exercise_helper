@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -32,6 +33,8 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
     public static Integer myTimer = 0;
     private static String timerState;
     private String category;
+    private ArrayList<Integer> dataList;
+
     private MyPointer myPointer;
 
     @Override
@@ -57,6 +60,7 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
 
         startTimer(); // timer setting
         myPointer = new MyPointer();
+        dataList = new ArrayList<Integer>(); //수신할 데이터를 저장할 곳
     }
 
     // timer setting: https://velog.io/@hojw1019/Android-Timer-update-TextView 참고
@@ -74,8 +78,15 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
                         }
                         else if (timerState.equals("reset")){
                             myTimer = 0;
+                            dataList = new ArrayList<Integer>(); //초기화
+                            progressBar.setProgress(0);
                         }
                         else {
+                            /*// todo : 테스트용이니 나중에 지울 것
+                            int power =  (int)(Math.random()*100);
+                            progressBar.setProgress(power);
+                            dataList.add(power);*/
+
                             myTimer++;
                         }
                         String message = String.format("%02d : %02d : %02d",
@@ -88,6 +99,18 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
 
         Timer timer = new Timer();
         timer.schedule(timerTask, 0, 1000);
+    }
+
+    private String getAverage(ArrayList<Integer> mlist){
+        Double ans = 0.00;
+        if (mlist.size() == 0){
+            return ans + "";
+        } else {
+            for (int i = 0;i<mlist.size();i++){
+                ans += mlist.get(i);
+            }
+            return (ans/mlist.size())+"";
+        }
     }
 
     /*
@@ -150,6 +173,7 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
             int power = (int) (Double.parseDouble(message));// Double <-> String
             if (0<=power & power<=100){
                 progressBar.setProgress(power);
+                dataList.add(power);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -215,10 +239,9 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
                 break;
 
             case R.id.createDiaryBtn :
-                String avg = "12.33"; //todo: 실제 값으로 수정
                 Intent intent = new Intent(this, DiaryActivity.class);
                 myPointer.setMode(myPointer.getCREATE_EXERCISE_MODE());
-                myPointer.setDictionary(new Dictionary(category, myTimer+"", avg));
+                myPointer.setDictionary(new Dictionary(category, myTimer+"", getAverage(dataList))); //todo : 확인
                 finish();
                 startActivity(intent);
                 break;

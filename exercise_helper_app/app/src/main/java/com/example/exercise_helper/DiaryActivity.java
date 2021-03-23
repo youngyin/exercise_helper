@@ -7,8 +7,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DiaryActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private EditText titleEditTV;
@@ -71,10 +75,19 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
             }
 
             // editText 설정
+            String message = "00 : 00 : 00";
+            try{
+                int myTimer = Integer.parseInt(dictionary.getDelay());
+                message = String.format("%02d : %02d : %02d",
+                        (int)(myTimer/3600), (int)((myTimer/60)%60), (int)(myTimer%60));
+            } catch (Exception e){
+
+            }
+
             titleEditTV.setText(dictionary.getTitle());
             categoryTV.setText("운동할 근육: "+dictionary.getCategory() + "");
             contentEditTv.setText(dictionary.getContent());
-            delayEditTV.setText(dictionary.getDelay()+"");
+            delayEditTV.setText(message);
             idEditTV.setText(dictionary.getId());
             timeTV.setText(dictionary.getTime());
 
@@ -82,6 +95,9 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
             timeTV.setText("");
             timeTV.setHeight(0);
 
+            int myTimer = 0;
+            String message = String.format("%02d : %02d : %02d", (int)(myTimer/3600), (int)((myTimer/60)%60), (int)(myTimer%60));
+            delayEditTV.setText(message);
         } else if(mode.equals(MyPointer.getUPDATE_MODE())){ // main -> diary (click recyclerview)
             // 근육 선택창 설정
             String[] musle = getResources().getStringArray(R.array.muscle);
@@ -93,10 +109,18 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
             }
 
             // editText 설정
+            String message = "00 : 00 : 00";
+            try{
+                int myTimer = Integer.parseInt(dictionary.getDelay());
+                message = String.format("%02d : %02d : %02d", (int)(myTimer/3600), (int)((myTimer/60)%60), (int)(myTimer%60));
+            } catch (Exception e){
+
+            }
+
             titleEditTV.setText(dictionary.getTitle());
             categoryTV.setText("운동할 근육: "+dictionary.getCategory() + "");
             contentEditTv.setText(dictionary.getContent());
-            delayEditTV.setText(dictionary.getDelay()+"");
+            delayEditTV.setText(message);
             idEditTV.setText(dictionary.getId());
             timeTV.setText(dictionary.getTime());
 
@@ -113,13 +137,28 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
             case R.id.save_btn :
                 String title = titleEditTV.getText().toString();
-                String delay = "100"; // todo : 초단위
-                String average = "3.45"; // todo :
+                String delay = "0";
                 String content = contentEditTv.getText().toString();
 
+                String strDate = delayEditTV.getText().toString();
+                Boolean validation = strDate.matches("^\\d\\d : \\d\\d : \\d\\d$");
+                if (validation) {
+                    strDate = strDate.replaceAll("[^0-9]", "");
+                    Integer hour = Integer.parseInt(strDate.charAt(0)+""+strDate.charAt(1));
+                    Integer min = Integer.parseInt(strDate.charAt(2)+""+strDate.charAt(3));
+                    Integer sec = Integer.parseInt(strDate.charAt(4)+""+strDate.charAt(5));
+                    delay = hour*3600 + min*60 + sec + "";
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "HH : MM : SS 형태로 입력해주세요!", Toast.LENGTH_LONG).show();
+                    break;
+                }
+
                 if (mode.equals(MyPointer.getCREATE_EXERCISE_MODE())){ // main -> exercise -> diary
+                    String average = dictionary.getAverage();
                     dbHelper.insert(title, category, delay, content, average);
                 } else if(mode.equals(MyPointer.getCREATE_MODE())){ // main -> diary (click image button)
+                    String average = "0.0000";
                     dbHelper.insert(title, category, delay, content, average);
                 } else if(mode.equals(MyPointer.getUPDATE_MODE())){ // main -> diary (click recyclerview)
                     dbHelper.update(dictionary.getId(), title, category, delay, content);
