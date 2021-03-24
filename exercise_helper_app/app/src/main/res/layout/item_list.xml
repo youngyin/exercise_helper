@@ -48,7 +48,7 @@
             <TextView
                 android:id="@+id/delay_textview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="delay"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/default_font_size" />
@@ -56,7 +56,7 @@
             <TextView
                 android:id="@+id/average_textview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="average"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/default_font_size" />
