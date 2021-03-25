@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.mikephil.charting.charts.LineChart;
+
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,6 +31,7 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
     private ProgressBar progressBar;
     private TextView timerTextview;
     private Spinner categorySpinner;
+    private LineChart lineChart;
 
     public static Integer myTimer = 0;
     private static String timerState;
@@ -36,6 +39,7 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
     private ArrayList<Integer> dataList;
 
     private MyPointer myPointer;
+    private ChartHelper chartHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
         btnConnect = findViewById(R.id.btnConnect);
         timerTextview = findViewById(R.id.myTimerTV);
         categorySpinner = findViewById(R.id.category_spinner2);
+        lineChart = findViewById(R.id.lineChart_live);
 
         btnConnect.setOnClickListener(this);
         findViewById(R.id.playBtn).setOnClickListener(this);
@@ -60,6 +65,7 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
 
         startTimer(); // timer setting
         myPointer = new MyPointer();
+        chartHelper = new ChartHelper();
         dataList = new ArrayList<Integer>(); //수신할 데이터를 저장할 곳
     }
 
@@ -73,6 +79,8 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
                 ExerciseActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        chartHelper.showRealTimeLineChart(lineChart, "sensor", (double)(Math.random()*100));
+
                         if (timerState.equals("stop")){
                             //pass
                         }
@@ -86,7 +94,6 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
                             int power =  (int)(Math.random()*100);
                             progressBar.setProgress(power);
                             dataList.add(power);*/
-
                             myTimer++;
                         }
                         String message = String.format("%02d : %02d : %02d",

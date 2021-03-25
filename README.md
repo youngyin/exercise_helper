@@ -36,3 +36,9 @@
 
 <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
+## dependencies
+
+**Apache License 2.0**
+
+* com.akexorcist:bluetoothspp:1.0.0
+* com.github.PhilJay:MPAndroidChart:v3.0.3

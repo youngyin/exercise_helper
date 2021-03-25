@@ -11,7 +11,6 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_margin="@dimen/layout_big_space"
         tools:ignore="Suspicious0dp">
         <TextView
             android:textStyle="bold"
@@ -125,4 +124,10 @@
         android:layout_marginRight="@dimen/layout_big_space"
         android:text="Create Diary"
         android:textSize="@dimen/default_font_size"/>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lineChart_live"
+        android:layout_margin="@dimen/layout_big_space"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_graph_size" />
 </LinearLayout>
