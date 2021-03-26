@@ -36,10 +36,9 @@
 
 
 <p>
-   <img src="exercise_helper_app\app\src\main\res\drawable-v24\pause1.png" width="100" >
-  <img src="exercise_helper_app\app\src\main\res\drawable-v24\play1.png" width="100" >
-  <img src="exercise_helper_app\app\src\main\res\drawable-v24\refresh1.png" width="100" >
-  <img src="exercise_helper_app\app\src\main\res\drawable-v24\reset1.png" width="100" >
+   <img src="exercise_helper_app\app\src\main\res\drawable-v24\pause2.png" width="100" >
+  <img src="exercise_helper_app\app\src\main\res\drawable-v24\play2.png" width="100" >
+  <img src="exercise_helper_app\app\src\main\res\drawable-v24\reset2.png" width="100" >
  </p>
+<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
-<div>Icons made by <a href="https://www.pngwing.com/" title="pngwing">pngwing</a> </div>
