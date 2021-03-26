@@ -4,49 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFCCCC"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/layout_big_space"
+        android:layout_height="0dp"
         android:orientation="horizontal"
-        android:weightSum="2">
+        android:gravity="center"
+        tools:ignore="Suspicious0dp">
+        <TextView
+            android:textStyle="bold"
+            android:text= "운동할 근육"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/big_title_font_size"
+            android:layout_marginRight="@dimen/layout_big_space"/>
 
         <Spinner
-            android:id="@+id/category_spinner2"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:entries="@array/muscle" />
-
-        <!--        <TextView-->
-        <!--            android:layout_weight="1"-->
-        <!--            android:layout_margin="@dimen/layout_default_space"-->
-        <!--            android:id="@+id/category_editTV2"-->
-        <!--            android:padding="@dimen/layout_default_space"-->
-        <!--            android:textColor="@color/black"-->
-        <!--            android:background="@drawable/memo_border"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginBottom="@dimen/layout_default_space"/>-->
-
-        <TextView
-            android:layout_width="match_parent"
+            android:padding="@dimen/layout_default_space"
+            android:textColor="@color/black"
+            android:background="@drawable/memo_border"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/layout_default_space"
-            android:layout_weight="1"
-            android:text="운동을 시작합니다."
-            android:textColor="#FAFAFA"
-            android:textSize="@dimen/big_title_font_size" />
+            android:id="@+id/category_spinner2"
+            android:entries="@array/muscle"/>
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/layout_default_space"
+        android:layout_marginTop="@dimen/layout_big_space"
+        android:text="CONNECT DEVICE"
+        android:textColor="@color/MainColor"
+        android:textSize="@dimen/big_title_font_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/myTimerTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="00 : 00 : 00"
+        android:textColor="@color/MainColor"
+        android:textSize="@dimen/timer_font_size" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <ImageButton
             android:id="@+id/playBtn"
@@ -55,10 +63,9 @@
             android:layout_gravity="center"
             android:layout_margin="@dimen/layout_small_space"
             android:background="@color/transparent"
-            android:fadeScrollbars="false"
             android:scaleType="fitCenter"
-            android:src="@drawable/play1"
-            android:tint="#FFFFFF" />
+            android:src="@drawable/play2"
+            android:tint="@color/MainColor" />
 
         <ImageButton
             android:id="@+id/stopBtn"
@@ -68,8 +75,8 @@
             android:layout_margin="@dimen/layout_small_space"
             android:background="@color/transparent"
             android:scaleType="fitCenter"
-            android:src="@drawable/pause1"
-            android:tint="#FFFFFF" />
+            android:src="@drawable/pause2"
+            android:tint="@color/MainColor" />
 
         <ImageButton
             android:id="@+id/resetBtn"
@@ -79,44 +86,19 @@
             android:layout_margin="@dimen/layout_small_space"
             android:background="@color/transparent"
             android:scaleType="fitCenter"
-            android:src="@drawable/reset1"
-            android:tint="#FFFFFF" />
+            android:src="@drawable/reset2"
+            android:tint="@color/MainColor" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/myTimerTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/layout_default_space"
-        android:text="00 : 00 : 00"
-        android:textColor="#FFFFFF"
-        android:textSize="@dimen/timer_font_size"
-        android:textStyle="bold" />
-
     <ProgressBar
-        android:id="@+id/progress"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:id="@+id/progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/layout_big_space"
-        android:layout_marginRight="@dimen/layout_big_space" />
+        android:layout_marginRight="@dimen/layout_big_space"
+        android:layout_marginLeft="@dimen/layout_big_space"/>
 
-    <!--<com.dinuscxj.progressbar.CircleProgressBar
-        android:layout_margin="@dimen/layout_default_space"
-        android:layout_gravity="center"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:progress_text_size="50sp"
-        app:style="solid_line"
-        app:progress_stroke_width="20dp "
-        app:progress_stroke_cap="round"
-        app:progress_start_color="#FFBB00"
-        app:progress_end_color="#ABF200"
-        style="@android:style/Widget.ProgressBar.Horizontal"
-        android:id="@+id/progress" />
--->
     <TextView
         android:id="@+id/textViewReceive"
         android:layout_width="match_parent"
@@ -124,55 +106,35 @@
         android:layout_margin="@dimen/layout_default_space"
         android:gravity="center"
         android:text="Not connected..."
-        android:textColor="#FFFFFF"
-        android:textSize="@dimen/default_font_size" />
+        android:textSize="@dimen/default_font_size"/>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btnConnect"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/layout_big_space"
+        android:layout_marginRight="@dimen/layout_big_space"
+        android:text="connect"
+        android:textSize="@dimen/default_font_size"
+        app:backgroundTint="@color/MainColor" />
 
-        <Button
-            android:id="@+id/btnConnect"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/layout_big_space"
-            android:layout_marginRight="@dimen/layout_default_space"
-            android:layout_weight="1"
-            android:text="connect"
-            android:textColor="#FD7C7C"
-            android:textSize="@dimen/default_font_size"
-            app:backgroundTint="#FFFFFF" />
-
-        <Button
-            android:id="@+id/createDiaryBtn"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/layout_default_space"
-            android:layout_marginRight="@dimen/layout_big_space"
-            android:layout_weight="1"
-            android:text="Create Diary"
-            android:textColor="#FD7C7C"
-            android:textSize="@dimen/default_font_size"
-            app:backgroundTint="#FFFFFF" />
-    </LinearLayout>
-
-    <LinearLayout
+    <Button
+        android:id="@+id/createDiaryBtn"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/layout_big_space"
+        android:layout_marginRight="@dimen/layout_big_space"
+        android:text="Create Diary"
+        android:textSize="@dimen/default_font_size"
+        app:backgroundTint="@color/MainColor" />
 
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/lineChart"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/layout_big_space" />
-    </LinearLayout>
-
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lineChart_live"
+        android:layout_margin="@dimen/layout_big_space"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_graph_size" />
 </LinearLayout>

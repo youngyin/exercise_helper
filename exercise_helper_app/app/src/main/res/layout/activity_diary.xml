@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/layout_big_space"
-    android:background="#D0FFFFFF"
     android:orientation="vertical"
     tools:context=".DiaryActivity">
 
@@ -15,7 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Create Diary"
-        android:textColor="#FD7C7C"
+        android:textColor="@color/MainColor"
         android:textSize="30sp" />
 
     <TextView
@@ -35,7 +33,7 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginBottom="@dimen/layout_default_space"
         android:text=" "
         android:textSize="@dimen/big_title_font_size" />
@@ -44,16 +42,20 @@
         android:id="@+id/title_editTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="@dimen/layout_default_space"
         android:background="@drawable/memo_border"
         android:padding="@dimen/layout_default_space"
         android:text="Title"
-        android:textColor="#FAFAFA" />
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/category_textview2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginBottom="@dimen/layout_default_space"
         android:text=" "
         android:textSize="@dimen/big_title_font_size" />
@@ -63,6 +65,10 @@
         android:id="@+id/category_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="@dimen/layout_default_space"
         android:background="@drawable/memo_border"
         android:entries="@array/muscle"
@@ -71,7 +77,7 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginBottom="@dimen/layout_default_space"
         android:text=" "
         android:textSize="@dimen/big_title_font_size" />
@@ -80,15 +86,19 @@
         android:id="@+id/delay_editTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="@dimen/layout_default_space"
         android:background="@drawable/memo_border"
         android:padding="@dimen/layout_default_space"
         android:text="Timer"
-        android:textColor="#FAFAFA" />
+        android:textColor="@color/white" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginBottom="@dimen/layout_default_space"
         android:text=" "
         android:textSize="@dimen/big_title_font_size" />
@@ -97,16 +107,24 @@
         android:id="@+id/content_editTV"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="@dimen/layout_default_space"
         android:background="@drawable/memo_border"
         android:padding="@dimen/layout_default_space"
         android:text="Content"
-        android:textColor="#FAFAFA" />
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/time_textView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:background="#FFFFFF"
         android:text="Date"
         android:textSize="@dimen/big_title_font_size" />
@@ -122,23 +140,31 @@
             android:id="@+id/save_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/layout_default_space"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:elevation="10dp"
             android:text="SAVE"
             android:textAllCaps="false"
+            android:textColor="@color/white"
             android:textSize="@dimen/default_font_size"
-            app:backgroundTint="#FD7C7C" />
+            app:backgroundTint="@color/teal_200" />
 
         <Button
             android:id="@+id/cancle_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/layout_default_space"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:text="CANCEL"
+            android:textColor="@color/white"
             android:textSize="@dimen/default_font_size"
-            app:backgroundTint="#FD7C7C" />
+            app:backgroundTint="@color/teal_700" />
     </LinearLayout>
 
 

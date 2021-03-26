@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="muscle">
-        <item>전완</item>
-        <item>삼각근</item>
+        <item>상복부</item>
+        <item>하복부</item>
         <item>가슴</item>
-        <item>상완이두근</item>
-        <item>상완삼두근</item>
-        <item>복부</item>
-        <item>광배근</item>
-        <item>대둔근</item>
-        <item>슬굴곡근</item>
-        <item>대퇴사두근</item>
-        <item>종아리</item>
+        <item>힙</item>
+        <item>허벅지</item>
+        <item>이두근</item>
+        <item>삼두근</item>
     </string-array>
 </resources>

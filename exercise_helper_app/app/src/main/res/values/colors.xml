@@ -8,4 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
+    <color name="MainColor">#00BCD4</color>
+
+    <!-- ChartHelper 시도실패 (사용오류)
+    <color name="graph_1">#26DAD9</color>
+    <color name="graph_2">#1DB8F0</color>
+    <color name="graph_3">#1C7BE6</color>
+    <color name="graph_4">#1DF0B4</color>
+    <color name="graph_5">#1CE673</color> -->
 </resources>

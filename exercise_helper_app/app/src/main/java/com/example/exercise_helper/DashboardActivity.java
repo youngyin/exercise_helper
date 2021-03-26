@@ -52,7 +52,7 @@ public class DashboardActivity extends AppCompatActivity {
             myMap.put(cursor.getString(1), cursor.getInt(0));
             message += cursor.getInt(0)+" : "+ cursor.getString(1) + ", ";
         }
-        chartHelper.showPieChart(pieChart, myMap,"count of record");
+        chartHelper.showPieChart(pieChart, myMap,"근육별 운동 비율");
     }
 
     private void draw_VerticalBarChart(BarChart barChart, Cursor cursor) {
@@ -64,7 +64,7 @@ public class DashboardActivity extends AppCompatActivity {
             values.add(cursor.getDouble(0));
             message += cursor.getInt(0)+" : "+ cursor.getString(1) + ", ";
         }
-        chartHelper.showVerticalBarChart(barChart, labels, values,"count of record");
+        chartHelper.showVerticalBarChart(barChart, labels, values,"일별 운동시간 비교");
         //Toast.makeText(getApplicationContext(), message + "---> "+cursor.getCount(), Toast.LENGTH_LONG).show();
     }
 

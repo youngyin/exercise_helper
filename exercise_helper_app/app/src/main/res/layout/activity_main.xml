@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFCCCC" 
+    android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -13,11 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/layout_default_space"
-        android:background="#F38E87"
+        android:background="@color/MainColor"
         android:elevation="100dp"
         android:hapticFeedbackEnabled="true"
         android:padding="@dimen/layout_default_space"
-        app:cardBackgroundColor="#F38E87"
+        app:cardBackgroundColor="@color/MainColor"
         app:cardCornerRadius="10dp"
         app:cardElevation="50dp"
         app:checkedIconTint="#FFFFFF"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/layout_default_space"
-            android:background="#F38E87"
+            android:background="@color/MainColor"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -47,7 +47,7 @@
                     android:layout_height="@dimen/icon_default_size"
                     android:background="#00FFFFFF"
                     android:scaleType="fitCenter"
-                    android:tint="#FFFFFF"
+                    android:tint="@color/white"
                     app:srcCompat="@drawable/dumbell"
                     tools:srcCompat="@drawable/dumbell" />
 
@@ -72,7 +72,7 @@
                     android:layout_height="@dimen/icon_default_size"
                     android:background="#00FFFFFF"
                     android:scaleType="fitCenter"
-                    android:tint="#FFFFFF"
+                    android:tint="@color/white"
                     app:srcCompat="@drawable/book" />
 
                 <TextView
@@ -96,7 +96,7 @@
                     android:layout_height="@dimen/icon_default_size"
                     android:background="@null"
                     android:scaleType="fitCenter"
-                    android:tint="#FFFFFF"
+                    android:tint="@color/white"
                     app:srcCompat="@drawable/monitor"
                     tools:srcCompat="@drawable/monitor" />
 
@@ -121,7 +121,7 @@
                     android:layout_height="@dimen/icon_default_size"
                     android:background="@null"
                     android:scaleType="fitCenter"
-                    android:tint="#FFFFFF"
+                    android:tint="@color/white"
                     app:srcCompat="@drawable/refresh1"
                     tools:srcCompat="@drawable/refresh1" />
 

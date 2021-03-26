@@ -16,17 +16,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="0dp"
-        android:background="#F38E87"
 
-        app:cardBackgroundColor="#F38E87"
+        android:background="@color/purple_200"
+        app:cardBackgroundColor="@color/teal_200"
         app:cardCornerRadius="10dp"
-        app:cardElevation="5dp"
-        app:cardUseCompatPadding="true"
+        app:cardElevation="20dp"
+        app:cardMaxElevation="50dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="false"
         app:contentPadding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/teal_200"
             android:orientation="vertical">
 
             <TextView
@@ -58,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:text="average"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textSize="@dimen/default_font_size" />
 
             <TextView
@@ -67,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:text="time"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textSize="@dimen/default_font_size" />
 
             <TextView
