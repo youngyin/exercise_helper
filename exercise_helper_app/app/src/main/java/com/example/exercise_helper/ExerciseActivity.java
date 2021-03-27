@@ -31,7 +31,8 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
     private TextView timerTextview;
     private LineChart lineChart;
 
-    public static Integer myTimer = 0;
+    public static long myTimer = 0;
+    public static long myTimer_save = 0;
     private static String timerState;
     private String category;
     private ArrayList<Integer> dataList;
@@ -68,7 +69,10 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
     // todo: bug
     private void startTimer(){
         myTimer = 0;
+        myTimer_save = 0;
         timerState = "stop";
+        final long[] now = {0};
+
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -76,10 +80,14 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
                     @Override
                     public void run() {
                         if (timerState.equals("stop")){
-                            //pass
+                            now[0] = 0;
+                            myTimer_save = myTimer;
                         }
                         else if (timerState.equals("reset")){
+                            now[0] = 0;
                             myTimer = 0;
+                            myTimer_save = 0;
+
                             dataList = new ArrayList<Integer>(); //초기화
                             lineChart.setData(new LineData());
                             // reset graph
@@ -87,9 +95,13 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
                             lineChart.clear();
                         }
                         else {
+                            if (now[0] == 0){
+                                now[0] = System.currentTimeMillis()/1000;
+                            }
+                            myTimer = myTimer_save + System.currentTimeMillis()/1000 - now[0];
                             // todo: 테스트용
                             // chartHelper.showRealTimeLineChart(lineChart, "sensor", (double)(Math.random()*100));
-                            myTimer++;
+                            //myTimer++;
                         }
                         String message = String.format("%02d : %02d : %02d",
                                 (int)(myTimer/3600), (int)((myTimer/60)%60), (int)(myTimer%60));
