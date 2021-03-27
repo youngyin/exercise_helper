@@ -4,8 +4,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="pie_chartText">근육별 운동횟수 비율 차트: 일지에 작성된 해당 근육 부위를 기준으로 차트에 각 근육별 운동 횟수 비율을 직관적으로 나타냅니다.</string>
-    <string name="bar_chartText">일별 운동시간 차트: 일지에 작성된 운동시간을 기준으로 차트에 각 일별 운동 시간을 비교합니다.</string>
-    <string name="line_chartText">근육별 근전도 값의 평균 차트: 일지에 작성된 해당 근육 부위를 기준으로 차트에 각 근육별 평균 근전도를 나타냅니다.</string>
+
+    <string name="pie_chartText">일지에 작성된 해당 근육 부위를 기준으로 차트에 각 근육별 운동 횟수를 직관적으로 나타냅니다.</string>
+    <string name="bar_chartText">일지에 작성된 운동시간을 기준으로 차트에 각 일별 운동 시간을 비교합니다.</string>
+    <string name="line_chartText">일지에 작성된 해당 근육 부위를 기준으로 차트에 각 근육별 평균 근전도를 나타냅니다.</string>
 
 </resources>

@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.Exercise_helper" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#A593E0</item> <!-- button color , toolbar color -->
-        <item name="colorPrimaryVariant">#566270</item> <!-- dark Text color -->
-        <item name="colorOnPrimary">#FFFFF3</item> <!-- bright Text color -->
+        <item name="colorPrimary">@color/signatureColor</item> <!-- button color , toolbar color -->
+        <item name="colorPrimaryVariant">@color/darkColor</item> <!-- dark Text color -->
+        <item name="colorOnPrimary">@color/brightColor</item> <!-- bright Text color -->
 
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

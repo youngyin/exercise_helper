@@ -8,7 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
-    <color name="MainColor">#00BCD4</color>
+
+    <!-- style color -->
+    <color name="MainColor">#9baec8</color>
+    <color name="darkColor">#282c37</color>
+    <color name="brightColor">#d9e1e8</color>
+    <color name="signatureColor">#2b90d9</color>
 
     <!-- ChartHelper 시도실패 (사용오류)
     <color name="graph_1">#26DAD9</color>

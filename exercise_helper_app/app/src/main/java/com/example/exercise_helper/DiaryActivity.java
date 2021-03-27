@@ -18,9 +18,7 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
     private EditText titleEditTV;
     private EditText delayEditTV;
     private EditText contentEditTv;
-    private EditText idEditTV;
     private EditText timeEditTV;
-    private TextView categoryTV;
     private Spinner categorySpinner;
     private Button cancelBtn;
     private Button saveBtn;
@@ -50,13 +48,11 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
     private void initView(){
         cancelBtn = findViewById(R.id.cancle_btn);
         saveBtn = findViewById(R.id.save_btn);
-        idEditTV = findViewById(R.id.id_editTV);
         titleEditTV = findViewById(R.id.title_editTV);
         delayEditTV = findViewById(R.id.delay_editTV);
         contentEditTv = findViewById(R.id.content_editTV);
         timeEditTV = findViewById(R.id.time_editTV);
         categorySpinner = findViewById(R.id.category_spinner);
-        categoryTV = findViewById(R.id.category_textview2);
 
         cancelBtn.setOnClickListener(this);
         saveBtn.setOnClickListener(this);
@@ -85,10 +81,8 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
             }
 
             titleEditTV.setText(dictionary.getTitle());
-            categoryTV.setText("운동할 근육");
             contentEditTv.setText(dictionary.getContent());
             delayEditTV.setText(message);
-            idEditTV.setText(dictionary.getId());
             timeEditTV.setText(dictionary.getTime());
 
         } else if(mode.equals(MyPointer.getCREATE_MODE())){ // main -> diary (click image button)
@@ -120,10 +114,8 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
             }
 
             titleEditTV.setText(dictionary.getTitle());
-            categoryTV.setText("운동할 근육");
             contentEditTv.setText(dictionary.getContent());
             delayEditTV.setText(message);
-            idEditTV.setText(dictionary.getId());
             timeEditTV.setText(dictionary.getTime());
 
             // 버튼 설정
@@ -192,7 +184,6 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         category = ""+parent.getItemAtPosition(position);
-        categoryTV.setText("운동할 근육");
     }
 
     @Override

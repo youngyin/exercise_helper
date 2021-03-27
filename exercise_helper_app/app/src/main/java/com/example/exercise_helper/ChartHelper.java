@@ -25,30 +25,20 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class ChartHelper {
-
-    // https://medium.com/@clyeung0714/using-mpandroidchart-for-android-application-piechart-123d62d4ddc0
-    public void showPieChart(PieChart chart, Map<String, Integer> myMap, String title) {
-        ArrayList<PieEntry> pieEntries = new ArrayList<>();
-
-        //initializing colors for the entries
+    private ArrayList<Integer> getColors(){
         ArrayList<Integer> colors = new ArrayList<>();
-//        for(int i=0;i<myMap.size();i++){
-//            int red = (int)(Math.random()*255); //todo : 색깔 다시 지정
-//            int blue = (int)(Math.random()*255);
-//            int green = (int)(Math.random()*255);
-//            colors.add(Color.rgb(red, blue, green));
-//        }
         colors.add(Color.rgb(28, 230, 123));
         colors.add(Color.rgb(29, 240, 184));
         colors.add(Color.rgb(38, 217, 218));
         colors.add(Color.rgb(28, 115, 230));
         colors.add(Color.rgb(29,181,166));
         colors.add(Color.rgb(21,194,231));
-//            colors.add(R.color.graph_1);
-//            colors.add(R.color.graph_2);
-//            colors.add(R.color.graph_3); /*colors사용 오류*/
-//            colors.add(R.color.graph_4);
-//            colors.add(R.color.graph_5);
+        return colors;
+    }
+
+    // https://medium.com/@clyeung0714/using-mpandroidchart-for-android-application-piechart-123d62d4ddc0
+    public void showPieChart(PieChart chart, Map<String, Integer> myMap, String title) {
+        ArrayList<PieEntry> pieEntries = new ArrayList<>();
 
         //input data and fit data into pie chart entry
         for(String type: myMap.keySet()){
@@ -58,7 +48,7 @@ public class ChartHelper {
         //collecting the entries with label name
         PieDataSet pieDataSet = new PieDataSet(pieEntries,title);
         pieDataSet.setValueTextSize(12f);
-        pieDataSet.setColors(colors);
+        pieDataSet.setColors(getColors());
         PieData pieData = new PieData(pieDataSet);
         pieData.setDrawValues(true);
 
@@ -120,6 +110,7 @@ public class ChartHelper {
         BarData data = new BarData(barDataSet);
 
         barDataSet.setValueTextSize(12f); // Text Size of Values
+        barDataSet.setColors(getColors());
 
         chart.setVisibleXRangeMaximum(5); // 최대 데이터 개수
         chart.setData(data);
@@ -176,6 +167,7 @@ public class ChartHelper {
         //lineDataSet.setFillColor(Color.BLUE);
         lineDataSet.setValueTextSize(12f); // Text Size of Values
         lineDataSet.setLineWidth(3); // Setting Line width
+        lineDataSet.setColors(getColors());
         //lineDataSet.setColor(Color.BLUE); // Setting Line color
 
         chartData.addDataSet(lineDataSet);
@@ -230,6 +222,7 @@ public class ChartHelper {
             lineDataSet.setValueTextSize(12f); // Text Size of Values
             lineDataSet.setLineWidth(3); // Setting Line width
             //lineDataSet.setColor(Color.BLUE); // Setting Line color
+            lineDataSet.setColors(getColors());
 
             chartData.addDataSet(lineDataSet);
         }

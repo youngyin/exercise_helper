@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dbHelper = new DBHelper(getApplicationContext()); // connect db
 
         initView();
+        custom_RecyclerView_Style();
         initRecyclerView();
         selectAllDB();
     }
@@ -52,6 +53,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         diaryBtn.setOnClickListener(this);
         initializationBtn.setOnClickListener(this);
         dashboardBtn.setOnClickListener(this);
+    }
+
+    private void custom_RecyclerView_Style(){
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(), new LinearLayoutManager(this).getOrientation());
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
     }
 
     private void initRecyclerView(){

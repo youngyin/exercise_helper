@@ -7,172 +7,111 @@
     android:orientation="vertical"
     tools:context=".DiaryActivity">
 
-    <TextView
-        android:id="@+id/textView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Create Diary"
-        android:textColor="@color/MainColor"
-        android:textSize="30sp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="아이디"
-        android:textSize="@dimen/big_title_font_size"
-        tools:ignore="Suspicious0dp" />
-
-    <EditText
-        android:id="@+id/id_editTV"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/memo_border"
-        android:textColor="@color/black"
-        tools:ignore="Suspicious0dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="@dimen/layout_default_space"
-        android:text=" "
-        android:textSize="@dimen/big_title_font_size" />
-
-    <EditText
-        android:hint="title"
-        android:id="@+id/title_editTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="@dimen/layout_default_space"
-        android:background="@drawable/memo_border"
-        android:padding="@dimen/layout_default_space"
-        android:text="Title"
-        android:textColor="@color/white" />
-
-    <TextView
-        android:id="@+id/category_textview2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="@dimen/layout_default_space"
-        android:text=" "
-        android:textSize="@dimen/big_title_font_size" />
-
-
-    <Spinner
-        android:id="@+id/category_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="@dimen/layout_default_space"
-        android:background="@drawable/memo_border"
-        android:entries="@array/muscle"
-        android:padding="@dimen/layout_default_space"
-        android:textColor="#FAFAFA" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="@dimen/layout_default_space"
-        android:text=" "
-        android:textSize="@dimen/big_title_font_size" />
-
-    <EditText
-        android:id="@+id/delay_editTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="@dimen/layout_default_space"
-        android:background="@drawable/memo_border"
-        android:padding="@dimen/layout_default_space"
-        android:text="Timer"
-        android:textColor="@color/white" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="@dimen/layout_default_space"
-        android:text=" "
-        android:textSize="@dimen/big_title_font_size" />
-
-    <EditText
-        android:hint="내용을 입력해주세요."
-        android:id="@+id/content_editTV"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="@dimen/layout_default_space"
-        android:background="@drawable/memo_border"
-        android:padding="@dimen/layout_default_space"
-        android:text="Content"
-        android:textColor="@color/white" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="작성시간"
-        android:textSize="@dimen/big_title_font_size"
-        android:layout_marginBottom="@dimen/layout_default_space"/>
-
-    <EditText
-        android:hint="yyyy-mm-dd hh:mm:ss"
-        android:id="@+id/time_editTV"
-        android:padding="@dimen/layout_default_space"
-        android:textColor="@color/black"
-        android:background="@drawable/memo_border"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/layout_default_space"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/layout_default_space"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <Button
-            android:id="@+id/save_btn"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:elevation="10dp"
-            android:text="SAVE"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="@dimen/default_font_size"
-            app:backgroundTint="@color/teal_200" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginTop="@dimen/layout_big_space"
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Create Diary"
+                android:textStyle="bold"
+                android:textSize="@dimen/big_title_font_size" />
 
-        <Button
-            android:id="@+id/cancle_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:text="CANCEL"
-            android:textColor="@color/white"
-            android:textSize="@dimen/default_font_size"
-            app:backgroundTint="@color/teal_700" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/title_editTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/layout_big_space"
+                android:layout_marginTop="@dimen/layout_big_space"
+                android:layout_marginRight="@dimen/layout_big_space"
+                android:background="@drawable/memo_border"
+                android:hint="Title"
+                android:padding="@dimen/layout_default_space"
+                android:textColor="@color/white" />
 
+            <Spinner
+                android:id="@+id/category_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_big_space"
+                android:layout_marginLeft="@dimen/layout_big_space"
+                android:layout_marginRight="@dimen/layout_big_space"
+                android:background="@drawable/memo_border"
+                android:entries="@array/muscle"
+                android:padding="@dimen/layout_default_space"
+                android:textColor="@color/white" />
 
+            <EditText
+                android:id="@+id/delay_editTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_big_space"
+                android:layout_marginLeft="@dimen/layout_big_space"
+                android:layout_marginRight="@dimen/layout_big_space"
+                android:background="@drawable/memo_border"
+                android:padding="@dimen/layout_default_space"
+                android:hint="Timer"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/content_editTV"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="@dimen/layout_big_space"
+                android:layout_marginLeft="@dimen/layout_big_space"
+                android:layout_marginRight="@dimen/layout_big_space"
+                android:background="@drawable/memo_border"
+                android:hint="Memo"
+                android:padding="@dimen/layout_default_space"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:hint="Date"
+                android:id="@+id/time_editTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_big_space"
+                android:layout_marginLeft="@dimen/layout_big_space"
+                android:layout_marginRight="@dimen/layout_big_space"
+                android:background="@drawable/memo_border"
+                android:padding="@dimen/layout_default_space"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/layout_big_space"
+                android:layout_marginLeft="@dimen/layout_big_space"
+                android:layout_marginRight="@dimen/layout_big_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Button
+                    android:layout_marginRight="@dimen/layout_default_space"
+                    android:id="@+id/save_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:elevation="10dp"
+                    android:text="SAVE"
+                    android:textSize="@dimen/default_font_size"/>
+
+                <Button
+                    android:layout_marginLeft="@dimen/layout_default_space"
+                    android:id="@+id/cancle_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="CANCEL"
+                    android:textSize="@dimen/default_font_size"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
