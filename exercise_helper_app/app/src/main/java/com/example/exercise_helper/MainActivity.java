@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dbHelper = new DBHelper(getApplicationContext()); // connect db
 
         initView();
-        custom_RecyclerView_Style();
+        //custom_RecyclerView_Style();
         initRecyclerView();
         selectAllDB();
     }

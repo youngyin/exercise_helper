@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:textColor="@color/darkColor"
         android:layout_marginTop="@dimen/layout_big_space"
         android:layout_marginLeft="@dimen/layout_big_space"
         android:layout_marginRight="@dimen/layout_big_space"
@@ -71,6 +72,7 @@
     </LinearLayout>
 
     <TextView
+        android:textColor="@color/darkColor"
         android:id="@+id/textViewReceive"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,6 +82,7 @@
         android:textSize="@dimen/default_font_size"/>
 
     <Button
+        android:textColor="@color/white"
         android:id="@+id/btnConnect"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
@@ -91,6 +94,7 @@
         android:textSize="@dimen/default_font_size"/>
 
     <Button
+        android:textColor="@color/white"
         android:id="@+id/createDiaryBtn"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"

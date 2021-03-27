@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/layout_default_space"
-        android:background="@color/MainColor"
         android:elevation="100dp"
         android:hapticFeedbackEnabled="true"
         android:padding="@dimen/layout_default_space"
@@ -25,7 +24,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/layout_default_space"
-            android:background="@color/MainColor"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -44,15 +42,15 @@
                     android:layout_height="@dimen/icon_default_size"
                     android:background="#00FFFFFF"
                     android:scaleType="fitCenter"
-                    android:tint="@color/white"
+                    android:tint="@color/darkColor"
                     app:srcCompat="@drawable/dumbell"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Exercise"
-                    android:textColor="#FFFFFF"
-                    app:drawableTint="#FFF1F1" />
+                    android:textColor="@color/darkColor"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <!-- diary button -->
@@ -66,17 +64,18 @@
                     android:id="@+id/diary_btn"
                     android:layout_width="@dimen/icon_default_size"
                     android:layout_height="@dimen/icon_default_size"
-                    android:background="#00FFFFFF"
+                    android:background="@color/transparent"
                     android:scaleType="fitCenter"
-                    android:tint="@color/white"
+                    android:tint="@color/darkColor"
                     app:srcCompat="@drawable/book" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Create Diary"
-                    android:textColor="#FFFFFF"
-                    app:drawableTint="#FFF1F1" />
+                    android:textColor="@color/darkColor"
+                    android:textStyle="bold"
+                     />
             </LinearLayout>
 
             <!-- dashboard button -->
@@ -92,15 +91,16 @@
                     android:layout_height="@dimen/icon_default_size"
                     android:background="@null"
                     android:scaleType="fitCenter"
-                    android:tint="@color/white"
+                    android:tint="@color/darkColor"
                     app:srcCompat="@drawable/monitor"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Dashboard"
-                    android:textColor="#FFFFFF"
-                    app:drawableTint="#FFF1F1" />
+                    android:textColor="@color/darkColor"
+                    android:textStyle="bold"
+                     />
             </LinearLayout>
 
             <!-- initialization button -->
@@ -116,15 +116,16 @@
                     android:layout_height="@dimen/icon_default_size"
                     android:background="@null"
                     android:scaleType="fitCenter"
-                    android:tint="@color/white"
+                    android:tint="@color/darkColor"
                     app:srcCompat="@drawable/refresh1" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="initialization"
-                    android:textColor="#FFFFFF"
-                    app:drawableTint="#FFF1F1" />
+                    android:textColor="@color/darkColor"
+                    android:textStyle="bold"
+                     />
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
