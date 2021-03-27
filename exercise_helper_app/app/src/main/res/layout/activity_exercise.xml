@@ -86,14 +86,6 @@
 
     </LinearLayout>
 
-    <ProgressBar
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:id="@+id/progress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/layout_big_space"
-        android:layout_marginLeft="@dimen/layout_big_space"/>
-
     <TextView
         android:id="@+id/textViewReceive"
         android:layout_width="match_parent"

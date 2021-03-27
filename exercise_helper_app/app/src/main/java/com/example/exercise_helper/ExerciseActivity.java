@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.LineData;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -28,7 +28,6 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
 
     private BluetoothSPP bt;
     private Button btnConnect;
-    private ProgressBar progressBar;
     private TextView timerTextview;
     private Spinner categorySpinner;
     private LineChart lineChart;
@@ -46,7 +45,6 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
 
-        progressBar = findViewById(R.id.progress);
         btnConnect = findViewById(R.id.btnConnect);
         timerTextview = findViewById(R.id.myTimerTV);
         categorySpinner = findViewById(R.id.category_spinner2);
@@ -70,6 +68,7 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
     }
 
     // timer setting: https://velog.io/@hojw1019/Android-Timer-update-TextView 참고
+    // todo: bug
     private void startTimer(){
         myTimer = 0;
         timerState = "stop";
@@ -79,21 +78,20 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
                 ExerciseActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        chartHelper.showRealTimeLineChart(lineChart, "sensor", (double)(Math.random()*100));
-
                         if (timerState.equals("stop")){
                             //pass
                         }
                         else if (timerState.equals("reset")){
                             myTimer = 0;
                             dataList = new ArrayList<Integer>(); //초기화
-                            progressBar.setProgress(0);
+                            lineChart.setData(new LineData());
+                            // reset graph
+                            lineChart.invalidate();
+                            lineChart.clear();
                         }
                         else {
-                            /*// todo : 테스트용이니 나중에 지울 것
-                            int power =  (int)(Math.random()*100);
-                            progressBar.setProgress(power);
-                            dataList.add(power);*/
+                            // todo: 테스트용
+                            // chartHelper.showRealTimeLineChart(lineChart, "sensor", (double)(Math.random()*100));
                             myTimer++;
                         }
                         String message = String.format("%02d : %02d : %02d",
@@ -179,7 +177,7 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
         try{
             int power = (int) (Double.parseDouble(message));// Double <-> String
             if (0<=power & power<=100){
-                progressBar.setProgress(power);
+                chartHelper.showRealTimeLineChart(lineChart, "sensor", power);
                 dataList.add(power);
             }
         }catch (Exception e){
@@ -195,13 +193,11 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
 
     @Override
     public void onDeviceDisconnected() {
-        progressBar.setProgress(0);
         setResponse("연결이 해제되었습니다.", "disconnected...", "connect"); // 연결해제
     }
 
     @Override
     public void onDeviceConnectionFailed() { //연결실패
-        progressBar.setProgress(0);
         setResponse("연결에 실패하였습니다.", "disconnected...", "connect"); // 연결실패
     }
 

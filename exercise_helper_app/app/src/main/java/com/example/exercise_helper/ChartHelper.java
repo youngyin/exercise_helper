@@ -6,6 +6,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -19,7 +20,6 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -51,6 +51,17 @@ public class ChartHelper {
         PieData pieData = new PieData(pieDataSet);
         pieData.setDrawValues(true);
 
+        // custom legend (hide)
+        Legend legend = chart.getLegend();
+        legend.setForm(Legend.LegendForm.NONE);
+        legend.setTextColor(Color.WHITE);
+
+        // custom description (hide)
+        Description description = new Description();
+        description.setEnabled(false);
+        chart.setDescription(description);
+
+        // chart set data
         chart.setData(pieData);
         chart.invalidate();
         chart.animateXY(5000, 5000);
@@ -83,8 +94,21 @@ public class ChartHelper {
         YAxis rightAxis = chart.getAxisRight();
         rightAxis.setEnabled(false);
 
+        // custom legend (hide)
+        Legend legend = chart.getLegend();
+        legend.setForm(Legend.LegendForm.NONE);
+        legend.setTextColor(Color.WHITE);
+
+        // custom description (hide)
+        Description description = new Description();
+        description.setEnabled(false);
+        chart.setDescription(description);
+
+        // chart set data
         BarDataSet barDataSet = new BarDataSet(entries, title);
         BarData data = new BarData(barDataSet);
+
+        barDataSet.setValueTextSize(12f); // Text Size of Values
 
         chart.setVisibleXRangeMaximum(5); // 최대 데이터 개수
         chart.setData(data);
@@ -120,9 +144,29 @@ public class ChartHelper {
         YAxis rightAxis = chart.getAxisRight();
         rightAxis.setEnabled(false);
 
+        // custom legend (hide)
+        Legend legend = chart.getLegend();
+        legend.setForm(Legend.LegendForm.NONE);
+        legend.setTextColor(Color.WHITE);
+
+        // custom description (hide)
+        Description description = new Description();
+        description.setEnabled(false);
+        chart.setDescription(description);
+
+        // chart set data
         LineData chartData = new LineData();
         LineDataSet lineDataSet = new LineDataSet(entry_chart, title);
+
+        // custom style
         lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER); // make smooth line chart
+        lineDataSet.setFillAlpha(100); // fill selected area, 투명도
+        lineDataSet.setDrawFilled(true);
+        //lineDataSet.setFillColor(Color.BLUE);
+        lineDataSet.setValueTextSize(12f); // Text Size of Values
+        lineDataSet.setLineWidth(3); // Setting Line width
+        //lineDataSet.setColor(Color.BLUE); // Setting Line color
+
         chartData.addDataSet(lineDataSet);
 
         chart.setVisibleXRangeMaximum(5); // 최대 데이터 개수
@@ -154,8 +198,28 @@ public class ChartHelper {
             YAxis rightAxis = chart.getAxisRight();
             rightAxis.setEnabled(false);
 
+            // custom legend (hide)
+            Legend legend = chart.getLegend();
+            legend.setForm(Legend.LegendForm.NONE);
+            legend.setTextColor(Color.WHITE);
+
+            // custom description (hide)
+            Description description = new Description();
+            description.setEnabled(false);
+            chart.setDescription(description);
+
+            //chart set data
             lineDataSet = new LineDataSet(null, title);
+
+            // custom style
             lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER); // make smooth line chart
+            lineDataSet.setFillAlpha(100); // fill selected area, 투명도
+            lineDataSet.setDrawFilled(true);
+            //lineDataSet.setFillColor(Color.BLUE);
+            lineDataSet.setValueTextSize(12f); // Text Size of Values
+            lineDataSet.setLineWidth(3); // Setting Line width
+            //lineDataSet.setColor(Color.BLUE); // Setting Line color
+
             chartData.addDataSet(lineDataSet);
         }
 
