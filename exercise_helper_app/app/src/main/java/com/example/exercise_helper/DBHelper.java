@@ -36,7 +36,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String mySQL = String.format(
                 "create table if not exists %s (" +
                 "%s integer primary key autoincrement, %s integer default 0,  %s real default 0, " +
-                "%s text, %s text, %s text, %s text);",
+                "%s text, %s text, %s text, %s timestamp);",
                 TABLE_NAME_DIARY,
                 COL_NAME_ID, COL_NAME_DELAY, COL_NAME_AVERAGE,
                 COL_NAME_TITLE, COL_NAME_CATEGORY, COL_NAME_CONTENT, COL_NAME_TIME);
@@ -58,10 +58,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Toast.makeText(context,"삭제되었습니다.",Toast.LENGTH_SHORT).show();
     }
 
-    public void insert(String title, String category, String delay, String content, String average){
-        SimpleDateFormat format1 = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
-        String _time = format1.format(new Date());
-
+    public void insert(String title, String category, String delay, String content, String average, String _time){
         SQLiteOpenHelper myDBHelper = new DBHelper(context);
         SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -80,7 +77,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void update(String _id, String title, String category, String delay, String content){
+    public void update(String _id, String title, String category, String delay, String content, String mTime){
         SQLiteOpenHelper myDBHelper = new DBHelper(context);
         SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
 
@@ -89,6 +86,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(COL_NAME_CATEGORY, category);
         cv.put(COL_NAME_DELAY, delay);
         cv.put(COL_NAME_CONTENT, content);
+        cv.put(COL_NAME_TIME, mTime);
 
         long result = sqlDB.update(TABLE_NAME_DIARY, cv, COL_NAME_ID+"=?", new String[]{_id});
         if (result != -1){
@@ -103,7 +101,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
 
         String mySQL = String.format(
-                "select %s, %s, %s, %s, %s, %s, %s from %s order by _id DESC;",
+                "select %s, %s, %s, %s, %s, %s, %s from %s order by _time DESC;",
                 COL_NAME_ID, COL_NAME_TITLE, COL_NAME_CATEGORY, COL_NAME_DELAY, COL_NAME_CONTENT, COL_NAME_TIME, COL_NAME_AVERAGE,
                 TABLE_NAME_DIARY);
         Cursor cursor = sqlDB.rawQuery(mySQL, null);

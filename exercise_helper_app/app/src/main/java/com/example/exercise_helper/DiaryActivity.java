@@ -19,7 +19,7 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
     private EditText delayEditTV;
     private EditText contentEditTv;
     private EditText idEditTV;
-    private TextView timeTV;
+    private EditText timeEditTV;
     private TextView categoryTV;
     private Spinner categorySpinner;
     private Button cancelBtn;
@@ -54,7 +54,7 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
         titleEditTV = findViewById(R.id.title_editTV);
         delayEditTV = findViewById(R.id.delay_editTV);
         contentEditTv = findViewById(R.id.content_editTV);
-        timeTV = findViewById(R.id.time_textView2);
+        timeEditTV = findViewById(R.id.time_editTV);
         categorySpinner = findViewById(R.id.category_spinner);
         categoryTV = findViewById(R.id.category_textview2);
 
@@ -85,19 +85,21 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
             }
 
             titleEditTV.setText(dictionary.getTitle());
-            categoryTV.setText("운동할 근육: "+dictionary.getCategory() + "");
+            categoryTV.setText("운동할 근육");
             contentEditTv.setText(dictionary.getContent());
             delayEditTV.setText(message);
             idEditTV.setText(dictionary.getId());
-            timeTV.setText(dictionary.getTime());
+            timeEditTV.setText(dictionary.getTime());
 
         } else if(mode.equals(MyPointer.getCREATE_MODE())){ // main -> diary (click image button)
-            timeTV.setText("");
-            timeTV.setHeight(0);
+            SimpleDateFormat format1 = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
+            String myTime = format1.format(new Date());
+            timeEditTV.setText(myTime);
 
             int myTimer = 0;
             String message = String.format("%02d : %02d : %02d", (int)(myTimer/3600), (int)((myTimer/60)%60), (int)(myTimer%60));
             delayEditTV.setText(message);
+
         } else if(mode.equals(MyPointer.getUPDATE_MODE())){ // main -> diary (click recyclerview)
             // 근육 선택창 설정
             String[] musle = getResources().getStringArray(R.array.muscle);
@@ -118,11 +120,11 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
             }
 
             titleEditTV.setText(dictionary.getTitle());
-            categoryTV.setText("운동할 근육: "+dictionary.getCategory() + "");
+            categoryTV.setText("운동할 근육");
             contentEditTv.setText(dictionary.getContent());
             delayEditTV.setText(message);
             idEditTV.setText(dictionary.getId());
-            timeTV.setText(dictionary.getTime());
+            timeEditTV.setText(dictionary.getTime());
 
             // 버튼 설정
             if (!dictionary.getId().equals("")){
@@ -136,13 +138,21 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.save_btn :
-                String title = titleEditTV.getText().toString();
                 String delay = "0";
+                String title = titleEditTV.getText().toString();
                 String content = contentEditTv.getText().toString();
+                String myTime = timeEditTV.getText().toString();
+                
+                // 유효성 검사
+                if (myTime.matches("^\\d\\d\\d\\d-\\d\\d-\\d\\d \\d\\d:\\d\\d:\\d\\d$")) {
+                    // pass
+                } else {
+                    Toast.makeText(getApplicationContext(), "YYYY-MM-DD hh:mm:ss 형태로 입력해주세요!", Toast.LENGTH_LONG).show();
+                    break;
+                }
 
                 String strDate = delayEditTV.getText().toString();
-                Boolean validation = strDate.matches("^\\d\\d : \\d\\d : \\d\\d$");
-                if (validation) {
+                if (strDate.matches("^\\d\\d : \\d\\d : \\d\\d$")) {
                     strDate = strDate.replaceAll("[^0-9]", "");
                     Integer hour = Integer.parseInt(strDate.charAt(0)+""+strDate.charAt(1));
                     Integer min = Integer.parseInt(strDate.charAt(2)+""+strDate.charAt(3));
@@ -156,12 +166,12 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
 
                 if (mode.equals(MyPointer.getCREATE_EXERCISE_MODE())){ // main -> exercise -> diary
                     String average = dictionary.getAverage();
-                    dbHelper.insert(title, category, delay, content, average);
+                    dbHelper.insert(title, category, delay, content, average, myTime);
                 } else if(mode.equals(MyPointer.getCREATE_MODE())){ // main -> diary (click image button)
                     String average = "0.0000";
-                    dbHelper.insert(title, category, delay, content, average);
+                    dbHelper.insert(title, category, delay, content, average, myTime);
                 } else if(mode.equals(MyPointer.getUPDATE_MODE())){ // main -> diary (click recyclerview)
-                    dbHelper.update(dictionary.getId(), title, category, delay, content);
+                    dbHelper.update(dictionary.getId(), title, category, delay, content, myTime);
                 }
 
                 finish();
@@ -182,11 +192,10 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         category = ""+parent.getItemAtPosition(position);
-        categoryTV.setText("운동할 근육: "+category);
+        categoryTV.setText("운동할 근육");
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        categoryTV.setText("운동할 근육");
     }
 }
