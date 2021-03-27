@@ -31,22 +31,24 @@
     </LinearLayout>
 
     <TextView
-        android:layout_marginTop="@dimen/layout_big_space"
-        android:textStyle="bold"
-        android:text= "CONNECT DEVICE"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/layout_default_space"
+        android:layout_marginTop="@dimen/layout_big_space"
+        android:text="CONNECT DEVICE"
+        android:textColor="@color/MainColor"
         android:textSize="@dimen/big_title_font_size"
-        android:layout_margin="@dimen/layout_default_space"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/myTimerTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="00 : 00 : 00"
-        android:textSize="@dimen/timer_font_size"
-        android:layout_gravity="center"/>
+        android:textColor="@color/MainColor"
+        android:textSize="@dimen/timer_font_size" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,34 +57,37 @@
         android:gravity="center">
 
         <ImageButton
-            android:layout_gravity="center"
-            android:layout_width="@dimen/icon_default_size"
-            android:layout_height="@dimen/icon_default_size"
-            android:src="@drawable/play"
-            android:scaleType="fitCenter"
             android:id="@+id/playBtn"
-            android:background="@color/transparent"
-            android:layout_margin="@dimen/layout_small_space"/>
-
-        <ImageButton
-            android:layout_gravity="center"
             android:layout_width="@dimen/icon_default_size"
             android:layout_height="@dimen/icon_default_size"
-            android:src="@drawable/stop"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/layout_small_space"
+            android:background="@color/transparent"
             android:scaleType="fitCenter"
+            android:src="@drawable/play2"
+            android:tint="@color/MainColor" />
+
+        <ImageButton
             android:id="@+id/stopBtn"
-            android:background="@color/transparent"
-            android:layout_margin="@dimen/layout_small_space"/>
-
-        <ImageButton
-            android:layout_gravity="center"
             android:layout_width="@dimen/icon_default_size"
             android:layout_height="@dimen/icon_default_size"
-            android:src="@drawable/reset"
-            android:scaleType="fitCenter"
-            android:id="@+id/resetBtn"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/layout_small_space"
             android:background="@color/transparent"
-            android:layout_margin="@dimen/layout_small_space"/>
+            android:scaleType="fitCenter"
+            android:src="@drawable/pause2"
+            android:tint="@color/MainColor" />
+
+        <ImageButton
+            android:id="@+id/resetBtn"
+            android:layout_width="@dimen/icon_default_size"
+            android:layout_height="@dimen/icon_default_size"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/layout_small_space"
+            android:background="@color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/reset2"
+            android:tint="@color/MainColor" />
 
     </LinearLayout>
 
@@ -96,26 +101,28 @@
         android:textSize="@dimen/default_font_size"/>
 
     <Button
-        style="@style/Widget.MaterialComponents.Button"
         android:id="@+id/btnConnect"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="@dimen/layout_big_space"
         android:layout_marginRight="@dimen/layout_big_space"
         android:text="connect"
-        android:textSize="@dimen/default_font_size"/>
+        android:textSize="@dimen/default_font_size"
+        app:backgroundTint="@color/MainColor" />
 
     <Button
-        style="@style/Widget.MaterialComponents.Button"
         android:id="@+id/createDiaryBtn"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="@dimen/layout_big_space"
         android:layout_marginRight="@dimen/layout_big_space"
         android:text="Create Diary"
-        android:textSize="@dimen/default_font_size"/>
+        android:textSize="@dimen/default_font_size"
+        app:backgroundTint="@color/MainColor" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/lineChart_live"

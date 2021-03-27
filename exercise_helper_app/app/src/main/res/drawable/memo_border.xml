@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item>
-        <shape android:shape="rectangle">
-            <solid android:color="#000000" />
-        </shape>
-
-    </item>
-
-    <item android:top = "1dp"
-        android:right= "1dp"
-        android:left="1dp"
-        android:bottom="1dp">
-
-        <shape android:shape="rectangle">
-            <solid android:color="@color/design_default_color_background" />
-        </shape>
-
-    </item>
-
-</layer-list>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle" >
+    <corners
+        android:radius="14dp"
+        />
+    <solid
+        android:color="@color/MainColor"
+        />
+    <padding
+        android:left="0dp"
+        android:top="0dp"
+        android:right="0dp"
+        android:bottom="0dp"
+        />
+    <size
+        android:width="270dp"
+        android:height="60dp"
+        />
+</shape>
