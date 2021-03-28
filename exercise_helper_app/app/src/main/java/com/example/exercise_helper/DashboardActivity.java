@@ -40,48 +40,48 @@ public class DashboardActivity extends AppCompatActivity {
         cursor = dbHelper.select_count_id_from_diary_group_by_date();
         draw_VerticalBarChart(barChart, cursor);
 
-        //cursor = dbHelper.select_average_from_diary_group_by_category();
+        cursor = dbHelper.select_average_from_diary_group_by_category();
         cursor = dbHelper.select_sum_delay_from_diary_group_by_category();
         draw_VerticalLineChart(lineChart, cursor);
     }
 
     private void draw_pieChart(PieChart pieChart, Cursor cursor) {
-        String message = "";
         Map<String, Integer> myMap = new HashMap<>();
         while (cursor.moveToNext()){
             myMap.put(cursor.getString(1), cursor.getInt(0));
-            message += cursor.getInt(0)+" : "+ cursor.getString(1) + ", ";
         }
-        chartHelper.showPieChart(pieChart, myMap,"근육별 운동 비율");
+        if (cursor.getCount()==0){
+        } else {
+            chartHelper.showPieChart(pieChart, myMap,"근육별 운동 비율");
+        }
     }
 
     private void draw_VerticalBarChart(BarChart barChart, Cursor cursor) {
-        String message = "";
         ArrayList<String> labels = new ArrayList<String>();
         ArrayList<Double> values = new ArrayList<Double>();
         while (cursor.moveToNext()){
             labels.add(cursor.getString(1));
             values.add(cursor.getDouble(0));
-            message += cursor.getInt(0)+" : "+ cursor.getString(1) + ", ";
         }
-        chartHelper.showVerticalBarChart(barChart, labels, values,"일별 운동시간 비교");
-        //Toast.makeText(getApplicationContext(), message + "---> "+cursor.getCount(), Toast.LENGTH_LONG).show();
+        if (cursor.getCount()==0){
+        } else {
+            chartHelper.showVerticalBarChart(barChart, labels, values,"일별 운동시간 비교");
+        }
     }
 
     private void draw_VerticalLineChart(LineChart lineChart, Cursor cursor) {
-        String message = "";
         ArrayList<String> labels = new ArrayList<String>();
         ArrayList<Double> values = new ArrayList<Double>();
         while (cursor.moveToNext()){
             labels.add(cursor.getString(1));
             values.add(cursor.getDouble(0));
-            message += cursor.getInt(0)+" : "+ cursor.getString(1) + ", ";
         }
-        if (cursor.getCount()<2){
-            lineChart.setVisibility(View.INVISIBLE);
+        if (cursor.getCount()==0){
+
+        } else if (cursor.getCount()==1){
+            chartHelper.showRealTimeLineChart(lineChart, "근육별 근전도값의 평균", values.get(0));
         } else {
             chartHelper.showVerticalLineChart(lineChart, labels, values,"근육별 근전도값의 평균");
         }
-        //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 }
