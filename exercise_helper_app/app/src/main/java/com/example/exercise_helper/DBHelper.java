@@ -77,7 +77,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void update(String _id, String title, String category, String delay, String content, String mTime){
+    public void update(String _id, String title, String category, String delay, String content, String mTime, String sensor){
         SQLiteOpenHelper myDBHelper = new DBHelper(context);
         SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
 
@@ -87,6 +87,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(COL_NAME_DELAY, delay);
         cv.put(COL_NAME_CONTENT, content);
         cv.put(COL_NAME_TIME, mTime);
+        cv.put(COL_NAME_AVERAGE, sensor);
 
         long result = sqlDB.update(TABLE_NAME_DIARY, cv, COL_NAME_ID+"=?", new String[]{_id});
         if (result != -1){
@@ -112,7 +113,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteOpenHelper myDBHelper = new DBHelper(context);
         SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
 
-        String mySQL = "select count(_id), category from diary group by category;";
+        String mySQL = "select count(_id), category from diary where delay > 0 group by category;";
         Cursor cursor = sqlDB.rawQuery(mySQL, null);
         return cursor;
     }
@@ -121,7 +122,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteOpenHelper myDBHelper = new DBHelper(context);
         SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
 
-        String mySQL = "select count(_TIME), substr(_TIME , 0, 11) from DIARY group by substr(_TIME , 0, 11);";
+        String mySQL = "select count(_TIME), substr(_TIME , 0, 11) from DIARY where delay > 0 group by substr(_TIME , 0, 11);";
         Cursor cursor = sqlDB.rawQuery(mySQL, null);
         return cursor;
     }
@@ -130,7 +131,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteOpenHelper myDBHelper = new DBHelper(context);
         SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
 
-        String mySQL = "select avg(_AVERAGE ), CATEGORY from DIARY group by CATEGORY;";
+        String mySQL = "select avg(_AVERAGE), CATEGORY from DIARY where _AVERAGE > 0 and delay > 0 group by CATEGORY;";
         Cursor cursor = sqlDB.rawQuery(mySQL, null);
         return cursor;
     }
@@ -140,6 +141,15 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
 
         String mySQL = "select sum(delay), CATEGORY from DIARY group by CATEGORY;";
+        Cursor cursor = sqlDB.rawQuery(mySQL, null);
+        return cursor;
+    }
+
+    public Cursor select_sum_delay_from_diary_group_by_date() {
+        SQLiteOpenHelper myDBHelper = new DBHelper(context);
+        SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
+
+        String mySQL = "select sum(delay), substr(_TIME , 0, 11) from DIARY where delay > 0 group by substr(_TIME , 0, 11);";
         Cursor cursor = sqlDB.rawQuery(mySQL, null);
         return cursor;
     }

@@ -37,11 +37,10 @@ public class DashboardActivity extends AppCompatActivity {
         cursor = dbHelper.select_count_id_from_diary_group_by_category();
         draw_pieChart(pieChart, cursor);
 
-        cursor = dbHelper.select_count_id_from_diary_group_by_date();
+        cursor = dbHelper.select_sum_delay_from_diary_group_by_date();
         draw_VerticalBarChart(barChart, cursor);
 
         cursor = dbHelper.select_average_from_diary_group_by_category();
-        cursor = dbHelper.select_sum_delay_from_diary_group_by_category();
         draw_VerticalLineChart(lineChart, cursor);
     }
 

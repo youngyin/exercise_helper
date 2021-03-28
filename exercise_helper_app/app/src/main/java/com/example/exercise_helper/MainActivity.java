@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         dbHelper = new DBHelper(getApplicationContext()); // connect db
+        MyPointer.resetAll();
 
         initView();
         //custom_RecyclerView_Style();

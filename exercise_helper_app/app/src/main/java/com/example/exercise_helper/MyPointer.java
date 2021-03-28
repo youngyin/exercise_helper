@@ -36,4 +36,10 @@ public class MyPointer {
     public static void setDictionary(Dictionary item) {
         dictionary = item;
     }
+
+    // reset
+    public static void resetAll(){
+        dictionary = null;
+        mode = null;
+    }
 }

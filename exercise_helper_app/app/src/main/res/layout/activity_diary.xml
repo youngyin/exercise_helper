@@ -61,6 +61,18 @@
                 />
 
             <EditText
+                android:id="@+id/sensor_editTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_big_space"
+                android:layout_marginLeft="@dimen/layout_big_space"
+                android:layout_marginRight="@dimen/layout_big_space"
+                android:background="@drawable/memo_border"
+                android:padding="@dimen/layout_default_space"
+                android:hint="Sensor Data"
+                />
+
+            <EditText
                 android:id="@+id/content_editTV"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
