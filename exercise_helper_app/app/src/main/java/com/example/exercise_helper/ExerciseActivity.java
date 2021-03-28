@@ -66,7 +66,6 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
     }
 
     // timer setting: https://velog.io/@hojw1019/Android-Timer-update-TextView 참고
-    // todo: bug
     private void startTimer(){
         myTimer = 0;
         myTimer_save = 0;
@@ -182,7 +181,7 @@ public class ExerciseActivity extends AppCompatActivity implements BluetoothSPP.
 
     @Override
     public void onDataReceived(byte[] data, String message) { // 데이터를 받았을 때 처리
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show(); // 토스트로 데이터 띄움
+        //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show(); // 토스트로 데이터 띄움
         try{
             int power = (int) (Double.parseDouble(message));// Double <-> String
             if (0<=power & power<=100){
